@@ -4,7 +4,7 @@
 # compile C with gcc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/bango/BanGUI/./include
+C_INCLUDES = -I/home/bango/BanGUI/./include -I/home/bango/BanGUI/./emulator -I/usr/include/SDL2
 
 C_FLAGS = 
 

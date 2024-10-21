@@ -129,6 +129,30 @@ BanGUI/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/build
 .PHONY : BanGUI/fast
 
+emulator/lcd.o: emulator/lcd.c.o
+.PHONY : emulator/lcd.o
+
+# target to build an object file
+emulator/lcd.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/emulator/lcd.c.o
+.PHONY : emulator/lcd.c.o
+
+emulator/lcd.i: emulator/lcd.c.i
+.PHONY : emulator/lcd.i
+
+# target to preprocess a source file
+emulator/lcd.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/emulator/lcd.c.i
+.PHONY : emulator/lcd.c.i
+
+emulator/lcd.s: emulator/lcd.c.s
+.PHONY : emulator/lcd.s
+
+# target to generate assembly for a file
+emulator/lcd.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/emulator/lcd.c.s
+.PHONY : emulator/lcd.c.s
+
 src/main.o: src/main.c.o
 .PHONY : src/main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... BanGUI"
+	@echo "... emulator/lcd.o"
+	@echo "... emulator/lcd.i"
+	@echo "... emulator/lcd.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

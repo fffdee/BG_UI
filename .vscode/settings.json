@@ -1,0 +1,9 @@
+{
+    "editor.fontSize": 18,
+    "editor.accessibilityPageSize": 18,
+    "files.associations": {
+        "stdio.h": "c",
+        "sdl.h": "c",
+        "lcd.h": "c"
+    }
+}

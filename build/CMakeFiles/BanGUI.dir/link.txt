@@ -1,0 +1,1 @@
+gcc CMakeFiles/BanGUI.dir/src/main.c.o -o BanGUI  -lev -lasound -lm 

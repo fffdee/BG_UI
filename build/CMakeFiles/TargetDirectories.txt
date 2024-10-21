@@ -1,0 +1,3 @@
+/home/bango/BanGUI/build/CMakeFiles/BanGUI.dir
+/home/bango/BanGUI/build/CMakeFiles/edit_cache.dir
+/home/bango/BanGUI/build/CMakeFiles/rebuild_cache.dir

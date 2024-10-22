@@ -9,7 +9,7 @@
 
 typedef struct 
 {
-    void (*Init)(void);
+    void (*Init)(const char*,uint8_t);
     void (*DeInit)(void);
     void (*DrawPoint)(uint32_t,uint16_t,uint16_t);
     void (*Clear)(uint32_t);

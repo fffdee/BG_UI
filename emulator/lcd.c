@@ -1,6 +1,6 @@
 #include "lcd.h"
 #include <SDL2/SDL.h>
-void LCD_Init();
+void LCD_Init(const char* name, uint8_t location);
 void LCD_DeInit();
 void LCD_Clear(uint32_t color);
 void LCD_DrawPoint(uint32_t color, uint16_t x, uint16_t y);
@@ -20,21 +20,31 @@ BG_SIM_LCD BG_SIM_Lcd = {
     .Loop = LCD_Loop,
 };
 
-void LCD_Init(){
+void LCD_Init(const char* name, uint8_t location){
 
  // 初始化SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
        // return 1;
     }
-
+    if(location==0){
     // 创建窗口
-    window = SDL_CreateWindow("White Dot on Black Background",
+    window = SDL_CreateWindow(name,
                               SDL_WINDOWPOS_UNDEFINED,
                               SDL_WINDOWPOS_UNDEFINED,
                               LCD_WIDTH,
                               LCD_HEIGHT,
                               SDL_WINDOW_SHOWN);
+     }
+    if(location==1){
+    // 创建窗口
+    window = SDL_CreateWindow(name,
+                              SDL_WINDOWPOS_UNDEFINED,
+                              SDL_WINDOWPOS_UNDEFINED,
+                              LCD_HEIGHT,
+                              LCD_WIDTH,
+                              SDL_WINDOW_SHOWN);
+     }
     if (window == NULL) {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
         SDL_Quit();

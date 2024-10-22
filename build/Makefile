@@ -129,6 +129,30 @@ BanGUI/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/build
 .PHONY : BanGUI/fast
 
+components/base_func/gui_tool.o: components/base_func/gui_tool.c.o
+.PHONY : components/base_func/gui_tool.o
+
+# target to build an object file
+components/base_func/gui_tool.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/base_func/gui_tool.c.o
+.PHONY : components/base_func/gui_tool.c.o
+
+components/base_func/gui_tool.i: components/base_func/gui_tool.c.i
+.PHONY : components/base_func/gui_tool.i
+
+# target to preprocess a source file
+components/base_func/gui_tool.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/base_func/gui_tool.c.i
+.PHONY : components/base_func/gui_tool.c.i
+
+components/base_func/gui_tool.s: components/base_func/gui_tool.c.s
+.PHONY : components/base_func/gui_tool.s
+
+# target to generate assembly for a file
+components/base_func/gui_tool.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/base_func/gui_tool.c.s
+.PHONY : components/base_func/gui_tool.c.s
+
 emulator/lcd.o: emulator/lcd.c.o
 .PHONY : emulator/lcd.o
 
@@ -152,6 +176,30 @@ emulator/lcd.s: emulator/lcd.c.s
 emulator/lcd.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/emulator/lcd.c.s
 .PHONY : emulator/lcd.c.s
+
+keyinput/input_handle.o: keyinput/input_handle.c.o
+.PHONY : keyinput/input_handle.o
+
+# target to build an object file
+keyinput/input_handle.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o
+.PHONY : keyinput/input_handle.c.o
+
+keyinput/input_handle.i: keyinput/input_handle.c.i
+.PHONY : keyinput/input_handle.i
+
+# target to preprocess a source file
+keyinput/input_handle.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/keyinput/input_handle.c.i
+.PHONY : keyinput/input_handle.c.i
+
+keyinput/input_handle.s: keyinput/input_handle.c.s
+.PHONY : keyinput/input_handle.s
+
+# target to generate assembly for a file
+keyinput/input_handle.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/keyinput/input_handle.c.s
+.PHONY : keyinput/input_handle.c.s
 
 src/main.o: src/main.c.o
 .PHONY : src/main.o
@@ -186,9 +234,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... BanGUI"
+	@echo "... components/base_func/gui_tool.o"
+	@echo "... components/base_func/gui_tool.i"
+	@echo "... components/base_func/gui_tool.s"
 	@echo "... emulator/lcd.o"
 	@echo "... emulator/lcd.i"
 	@echo "... emulator/lcd.s"
+	@echo "... keyinput/input_handle.o"
+	@echo "... keyinput/input_handle.i"
+	@echo "... keyinput/input_handle.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

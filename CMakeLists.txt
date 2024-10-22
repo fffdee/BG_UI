@@ -8,6 +8,8 @@ set(CMAKE_C_COMPILER gcc)
 file(GLOB_RECURSE SRC_FILES
     "./src/*.c"
     "./emulator/*.c"
+    "./keyinput/*.c"
+    "./components/base_func/*.c"
 )
 
 # 生成可执行文件
@@ -17,8 +19,9 @@ add_executable(BanGUI ${SRC_FILES})
 target_include_directories(BanGUI PUBLIC
     ./include
     ./emulator
+    ./keyinput
+    ./components/base_func
 )
-
 # 查找 SDL2 库
 find_package(SDL2 REQUIRED)
 

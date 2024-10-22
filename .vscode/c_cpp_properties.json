@@ -4,7 +4,9 @@
             "name": "Linux",
             "includePath": [
                 "${default}",
-                "${workspaceFolder}/emulator"
+                "${workspaceFolder}/emulator",
+                "${workspaceFolder}/keyinput",
+                "${workspaceFolder}/components/base_func"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

@@ -3,7 +3,8 @@
 void LCD_Init(const char* name, uint8_t location);
 void LCD_DeInit();
 void LCD_Clear(uint32_t color);
-void LCD_DrawPoint(uint32_t color, uint16_t x, uint16_t y);
+void LCD_Update();
+void LCD_DrawPoint(uint16_t x, uint16_t y, uint32_t color);
 uint8_t LCD_Loop(uint8_t *running);
 
 SDL_Window* window = NULL;
@@ -17,6 +18,7 @@ BG_SIM_LCD BG_SIM_Lcd = {
     .DeInit = LCD_DeInit,
     .DrawPoint = LCD_DrawPoint,
     .Clear = LCD_Clear,
+    .Update = LCD_Update,
     .Loop = LCD_Loop,
 };
 
@@ -24,7 +26,7 @@ void LCD_Init(const char* name, uint8_t location){
 
  // 初始化SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        printf("SDL could not void LCD_Clear(uint32_t color);initialize! SDL_Error: %s\n", SDL_GetError());
        // return 1;
     }
     if(location==0){
@@ -37,7 +39,7 @@ void LCD_Init(const char* name, uint8_t location){
                               SDL_WINDOW_SHOWN);
      }
     if(location==1){
-    // 创建窗口
+    // 创建窗口void LCD_Clear(uint32_t color);
     window = SDL_CreateWindow(name,
                               SDL_WINDOWPOS_UNDEFINED,
                               SDL_WINDOWPOS_UNDEFINED,
@@ -93,11 +95,11 @@ void LCD_Clear(uint32_t color){
     SDL_SetRenderDrawColor(renderer, R, G, B, 255);
     // 清除渲染器（设置为黑色背景）
     SDL_RenderClear(renderer);
-     // 更新屏幕
-    SDL_RenderPresent(renderer);
+    // SDL_RenderPresent(renderer);
+    
 }
 
-void LCD_DrawPoint(uint32_t color, uint16_t x, uint16_t y){
+void LCD_DrawPoint(uint16_t x, uint16_t y, uint32_t color){
 
     uint8_t R,G,B;
     R = (color & 0x00FF0000) >> 16; 
@@ -106,8 +108,12 @@ void LCD_DrawPoint(uint32_t color, uint16_t x, uint16_t y){
     // 设置渲染器颜色（黑色）
     SDL_SetRenderDrawColor(renderer, R, G, B, 255);
     SDL_RenderDrawPoint(renderer, x, y);
+  //   SDL_RenderPresent(renderer);
+    
+}
+
+void LCD_Update(){
+
      // 更新屏幕
     SDL_RenderPresent(renderer);
-  
-    
 }

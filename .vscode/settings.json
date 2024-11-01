@@ -4,6 +4,7 @@
     "files.associations": {
         "stdio.h": "c",
         "sdl.h": "c",
-        "lcd.h": "c"
+        "lcd.h": "c",
+        "bg_page.h": "c"
     }
 }

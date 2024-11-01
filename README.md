@@ -1,4 +1,4 @@
-# BG_UI
+# BanGUI
 Some UI for mcu 
 
 # Runnig for Linux

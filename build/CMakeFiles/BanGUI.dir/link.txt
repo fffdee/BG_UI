@@ -1,1 +1,1 @@
-gcc CMakeFiles/BanGUI.dir/components/base_func/gui_tool.c.o CMakeFiles/BanGUI.dir/emulator/lcd.c.o CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o CMakeFiles/BanGUI.dir/src/main.c.o -o BanGUI  -L/usr/lib/x86_64-linux-gnu  -lSDL2 -lev -lasound -lm 
+gcc CMakeFiles/BanGUI.dir/components/BG_List/bg_list.c.o CMakeFiles/BanGUI.dir/components/base_func/gui_tool.c.o CMakeFiles/BanGUI.dir/emulator/lcd.c.o CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o CMakeFiles/BanGUI.dir/src/main.c.o -o BanGUI  -L/usr/lib/x86_64-linux-gnu  -lSDL2 -lev -lasound -lm 

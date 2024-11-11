@@ -129,6 +129,30 @@ BanGUI/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/build
 .PHONY : BanGUI/fast
 
+components/BG_List/bg_list.o: components/BG_List/bg_list.c.o
+.PHONY : components/BG_List/bg_list.o
+
+# target to build an object file
+components/BG_List/bg_list.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/BG_List/bg_list.c.o
+.PHONY : components/BG_List/bg_list.c.o
+
+components/BG_List/bg_list.i: components/BG_List/bg_list.c.i
+.PHONY : components/BG_List/bg_list.i
+
+# target to preprocess a source file
+components/BG_List/bg_list.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/BG_List/bg_list.c.i
+.PHONY : components/BG_List/bg_list.c.i
+
+components/BG_List/bg_list.s: components/BG_List/bg_list.c.s
+.PHONY : components/BG_List/bg_list.s
+
+# target to generate assembly for a file
+components/BG_List/bg_list.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/BG_List/bg_list.c.s
+.PHONY : components/BG_List/bg_list.c.s
+
 components/base_func/gui_tool.o: components/base_func/gui_tool.c.o
 .PHONY : components/base_func/gui_tool.o
 
@@ -234,6 +258,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... BanGUI"
+	@echo "... components/BG_List/bg_list.o"
+	@echo "... components/BG_List/bg_list.i"
+	@echo "... components/BG_List/bg_list.s"
 	@echo "... components/base_func/gui_tool.o"
 	@echo "... components/base_func/gui_tool.i"
 	@echo "... components/base_func/gui_tool.s"

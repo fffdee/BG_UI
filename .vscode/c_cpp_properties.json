@@ -6,7 +6,8 @@
                 "${default}",
                 "${workspaceFolder}/emulator",
                 "${workspaceFolder}/keyinput",
-                "${workspaceFolder}/components/base_func"
+                "${workspaceFolder}/components/base_func",
+                "${workspaceFolder}/components/BG_List"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

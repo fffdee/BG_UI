@@ -4,27 +4,30 @@
 // 定义链表节点结构体
 typedef struct Node {
     int data;
+    const char* name; 
     struct Node* next;
 } Node;
 
 // 创建一个新的节点
-Node* createNode(int data) {
+Node* createNode(int data,const char* name) {
     Node* newNode = (Node*)malloc(sizeof(Node));
     if (newNode == NULL) {
         exit(EXIT_FAILURE); // 如果内存分配失败，退出程序
     }
     newNode->data = data;
+    newNode->name = name;
     newNode->next = NULL;
     return newNode;
 }
 
 // 在链表末尾添加一个新节点
-void appendNode(Node** head, int data) {
-    Node* newNode = createNode(data);
+void appendNode(Node** head, int data,const char* name) {
+    Node* newNode = createNode(data,name);
     if (*head == NULL) {
         *head = newNode;
         return;
     }
+    
     Node* current = *head;
     while (current->next != NULL) {
         current = current->next;
@@ -72,7 +75,8 @@ void updateNode(Node* head, int oldData, int newData) {
 // 打印链表
 void printList(Node* node) {
     while (node != NULL) {
-        printf("%d -> ", node->data);
+        printf("%d ", node->data);
+        printf("%s -> ", node->name);
         node = node->next;
     }
     printf("NULL\n");
@@ -92,10 +96,10 @@ int main() {
     Node* head = NULL;
 
     // 添加节点
-    appendNode(&head, 1);
-    appendNode(&head, 2);
-    appendNode(&head, 3);
-    appendNode(&head, 4);
+    appendNode(&head, 1,"one");
+    appendNode(&head, 2,"two");
+    appendNode(&head, 3,"three");
+    appendNode(&head, 4,"four");
 
     // 打印链表
     printf("Initial list: ");

@@ -5,6 +5,7 @@
         "stdio.h": "c",
         "sdl.h": "c",
         "lcd.h": "c",
-        "bg_page.h": "c"
+        "bg_page.h": "c",
+        "bg_list.h": "c"
     }
 }

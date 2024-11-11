@@ -9,6 +9,7 @@ typedef struct
     void (*Circle)(uint16_t,uint16_t,uint16_t,uint32_t);
     void (*ShowChar)(uint16_t, uint16_t, uint8_t, uint32_t);
     void (*ShowString)(uint16_t, uint16_t, uint8_t*,uint32_t);
+    void (*ShowImage)(uint16_t, uint16_t, uint16_t, uint16_t, const uint8_t *);
 
 }BGUI_Tool;
 

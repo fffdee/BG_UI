@@ -34,7 +34,34 @@ CMakeFiles/BanGUI.dir/components/base_func/gui_tool.c.o: ../components/base_func
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
-  /usr/include/x86_64-linux-gnu/bits/floatn-common.h
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
 
 CMakeFiles/BanGUI.dir/emulator/lcd.c.o: ../emulator/lcd.c \
   /usr/include/stdc-predef.h \
@@ -521,8 +548,11 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
   /usr/include/x86_64-linux-gnu/sys/time.h \
   ../emulator/lcd.h \
   ../keyinput/input_handle.h \
-  ../components/base_func/gui_tool.h
+  ../components/base_func/gui_tool.h \
+  ../components/base_func/picture.h
 
+
+../components/base_func/picture.h:
 
 /usr/include/x86_64-linux-gnu/sys/time.h:
 
@@ -660,6 +690,22 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vbmivlintrin.h:
 
+/usr/include/SDL2/SDL_hidapi.h:
+
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+
+/usr/include/SDL2/SDL_sensor.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+/usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
+
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/9/include/vaesintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
@@ -676,63 +722,15 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/string.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vnniintrin.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
-
-/usr/include/SDL2/SDL_version.h:
-
-/usr/include/x86_64-linux-gnu/bits/typesizes.h:
-
-../emulator/lcd.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/popcntintrin.h:
-
-/usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h:
-
-/usr/include/SDL2/SDL_sensor.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
-
-/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
-
-/usr/include/SDL2/SDL_config.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512ifmavlintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vbmiintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/prfchwintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vbmi2intrin.h:
-
-/usr/include/SDL2/SDL_stdinc.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/sigval_t.h:
-
-/usr/include/SDL2/SDL_endian.h:
-
-/usr/include/SDL2/SDL.h:
-
-/usr/include/SDL2/SDL_locale.h:
-
-/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/immintrin.h:
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
 /usr/include/SDL2/SDL_rect.h:
 
 /usr/include/SDL2/SDL_video.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
-
-/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
 /usr/include/x86_64-linux-gnu/bits/termios-struct.h:
 
@@ -744,31 +742,27 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/emmintrin.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+/usr/lib/gcc/x86_64-linux-gnu/9/include/cetintrin.h:
 
-/usr/include/SDL2/begin_code.h:
+/usr/include/SDL2/SDL_assert.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/9/include/wmmintrin.h:
+/usr/include/stdlib.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/mm_malloc.h:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
 /usr/include/SDL2/SDL_cpuinfo.h:
 
-/usr/include/SDL2/SDL_hidapi.h:
+/usr/include/x86_64-linux-gnu/bits/types/sigval_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+/usr/include/SDL2/SDL_endian.h:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
 /usr/include/inttypes.h:
-
-/usr/include/SDL2/close_code.h:
-
-/usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512cdintrin.h:
 
 /usr/include/signal.h:
 
@@ -818,13 +812,33 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/endian.h:
 
-/usr/include/x86_64-linux-gnu/bits/signum-generic.h:
+/usr/lib/gcc/x86_64-linux-gnu/9/include/mmintrin.h:
 
-/usr/include/SDL2/SDL_platform.h:
+/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vnniintrin.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/wmmintrin.h:
+
+/usr/include/SDL2/begin_code.h:
+
+/usr/include/SDL2/SDL_version.h:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+../emulator/lcd.h:
+
+/usr/include/x86_64-linux-gnu/bits/signum-generic.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/9/include/mmintrin.h:
+/usr/include/SDL2/SDL_platform.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/popcntintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/termios-baud.h:
 
@@ -864,6 +878,14 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/prfchwintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vbmi2intrin.h:
+
+/usr/include/SDL2/SDL_stdinc.h:
+
 /usr/include/SDL2/SDL_gesture.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx512bwintrin.h:
@@ -886,23 +908,31 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/wchar.h:
 
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
-
-/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
-
-/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/cetintrin.h:
-
-/usr/include/SDL2/SDL_assert.h:
-
-/usr/include/stdlib.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/mm_malloc.h:
-
-/usr/include/x86_64-linux-gnu/bits/waitflags.h:
-
 /usr/include/alloca.h:
+
+/usr/include/SDL2/SDL.h:
+
+/usr/include/SDL2/SDL_locale.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/immintrin.h:
+
+/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
+
+/usr/include/SDL2/SDL_config.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512ifmavlintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vbmiintrin.h:
+
+/usr/include/SDL2/close_code.h:
+
+/usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512cdintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 

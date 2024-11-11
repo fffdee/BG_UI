@@ -1,20 +1,22 @@
 #include "gui_tool.h"
 #include "lcd.h"
 #include "font.h"
-#include "picture.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void Gui_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t Color);
 void Gui_Circle(uint16_t X, uint16_t Y, uint16_t R, uint32_t fc);
 void Gui_ShowChar(uint16_t x0, uint16_t y0, uint8_t chr, uint32_t fc);
 void Gui_ShowString(uint16_t x0, uint16_t y0, uint8_t *chr, uint32_t fc);
+void Gui_ShowImage(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1,const uint8_t *chr);
+
 BGUI_Tool BGUI_tool = {//BGUI_tool.ShowString(0,0,"hello world!",0xFFFF);
        
 	.DrawLine = Gui_DrawLine,
 	.Circle = Gui_Circle,
 	.ShowChar = Gui_ShowChar,
 	.ShowString = Gui_ShowString,
-
+	.ShowImage = Gui_ShowImage,
 };
 
 void Gui_Circle(uint16_t X, uint16_t Y, uint16_t R, uint32_t fc)
@@ -143,6 +145,32 @@ void Gui_ShowString(uint16_t x0, uint16_t y0, uint8_t *chr, uint32_t fc)
 		j++;
 	}
 }
+
+void Gui_ShowImage(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, const uint8_t *chr) {
+    for (uint8_t y = 0; y < y1; y++) {
+        for (uint8_t x = 0; x < x1; x++) {
+            uint16_t color565 = 0x00;
+            color565 = (chr[x * 2 + 1 + y * x1 * 2] << 8) | chr[x * 2 + y * x1 * 2];
+
+            // 提取RGB565中的RGB值
+            uint8_t r = (color565 >> 11) & 0x1F;
+            uint8_t g = (color565 >> 5) & 0x3F;
+            uint8_t b = color565 & 0x1F;
+
+            // 将5位和6位RGB值扩展到8位
+            r = (r * 255) / 31; // 5位红色扩展到8位
+            g = (g * 255) / 63; // 6位绿色扩展到8位
+            b = (b * 255) / 31; // 5位蓝色扩展到8位
+
+            // 组合成24位RGB颜色值
+            uint32_t color24 = (uint32_t)r << 16 | (uint32_t)g << 8 | (uint32_t)b;
+
+            // 绘制点
+            BG_SIM_Lcd.DrawPoint(x0 + x, y0 + y, color24);
+        }
+    }
+}
+
 
 void Gui_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t Color)
 {

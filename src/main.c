@@ -12,21 +12,22 @@
 #include "lcd.h"
 #include "input_handle.h"
 #include "gui_tool.h"
-
+#include "picture.h"
 struct timeval start_time;
 char keyinput;
 uint8_t running=1; 
 uint8_t key = 2;
 void timer_handler(int signum)
 {
-   // while(running){
-       
+ 
         BG_SIM_Lcd.Loop(&running);
      
         BG_SIM_Lcd.Clear(0x000000);
         
         BG_SIM_Lcd.DrawPoint(64,80,0xFFFFFF);
         BGUI_tool.ShowString(0,0,"hello world!",0xFFFFFF);
+
+        BGUI_tool.ShowImage(16,16,40,40,gImage_qq);
         //BGUI_tool.ShowChar(0,0,'c',0xFFFFFF);
         if(key==0){
             
@@ -46,7 +47,7 @@ void timer_handler(int signum)
         BG_SIM_Lcd.Update();
          if(running==0){
             BG_SIM_Lcd.DeInit();
-            //return 0;
+           
         }
         
 
@@ -70,6 +71,7 @@ int main(int argc, char* argv[]) {
     
     BG_input_handle.KeyBoardInit();
     BG_SIM_Lcd.Init("Point",0);
+    
     time_init();
     
     while(1){

@@ -197,4 +197,5 @@ CMakeFiles/BanGUI.dir/src/main.c.o: /home/bango/BanGUI/src/main.c \
  /usr/include/x86_64-linux-gnu/sys/time.h \
  /home/bango/BanGUI/./emulator/lcd.h \
  /home/bango/BanGUI/./keyinput/input_handle.h \
- /home/bango/BanGUI/./components/base_func/gui_tool.h
+ /home/bango/BanGUI/./components/base_func/gui_tool.h \
+ /home/bango/BanGUI/./components/base_func/picture.h

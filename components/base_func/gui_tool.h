@@ -3,10 +3,12 @@
 
 #include<stdint.h>
 
-typedef struct gui_tool
+typedef struct 
 {
     void (*DrawLine)(uint16_t, uint16_t,uint16_t, uint16_t,uint32_t);
     void (*Circle)(uint16_t,uint16_t,uint16_t,uint32_t);
+    void (*ShowChar)(uint16_t, uint16_t, uint8_t, uint32_t);
+    void (*ShowString)(uint16_t, uint16_t, uint8_t*,uint32_t);
 
 }BGUI_Tool;
 

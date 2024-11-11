@@ -26,7 +26,8 @@ void timer_handler(int signum)
         BG_SIM_Lcd.Clear(0x000000);
         
         BG_SIM_Lcd.DrawPoint(64,80,0xFFFFFF);
-        
+        BGUI_tool.ShowString(0,0,"hello world!",0xFFFFFF);
+        //BGUI_tool.ShowChar(0,0,'c',0xFFFFFF);
         if(key==0){
             
             BGUI_tool.Circle(64,80,20,0xFFFFFF);
@@ -47,7 +48,7 @@ void timer_handler(int signum)
             BG_SIM_Lcd.DeInit();
             //return 0;
         }
-   
+        
 
 }
 

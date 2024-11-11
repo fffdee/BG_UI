@@ -1,158 +1,125 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// 定义链表节点结构体
 typedef struct Node {
     int data;
     struct Node* next;
 } Node;
 
-typedef struct HashTableEntry {
-    int key;
-    Node* node;
-    struct HashTableEntry* next;
-} HashTableEntry;
-
-#define TABLE_SIZE 10
-
-HashTableEntry* hashTable[TABLE_SIZE];
-
-unsigned int hashFunction(int key) {
-    return key % TABLE_SIZE;
-}
-
-void initHashTable() {
-    for (int i = 0; i < TABLE_SIZE; i++) {
-        hashTable[i] = NULL;
-    }
-}
-
-void insertHashTable(int key, Node* node) {
-    unsigned int index = hashFunction(key);
-    HashTableEntry* newEntry = (HashTableEntry*)malloc(sizeof(HashTableEntry));
-    newEntry->key = key;
-    newEntry->node = node;
-    newEntry->next = hashTable[index]; // Insert at the beginning of the list
-    hashTable[index] = newEntry;
-}
-
-void deleteHashTable(int key) {
-    unsigned int index = hashFunction(key);
-    HashTableEntry* entry = hashTable[index];
-    HashTableEntry* prev = NULL;
-    while (entry != NULL && entry->key != key) {
-        prev = entry;
-        entry = entry->next;
-    }
-    if (entry == NULL) return; // Key not found
-    if (prev == NULL) {
-        hashTable[index] = entry->next;
-    } else {
-        prev->next = entry->next;
-    }
-    free(entry);
-}
-
-Node* searchHashTable(int key) {
-    unsigned int index = hashFunction(key);
-    HashTableEntry* entry = hashTable[index];
-    while (entry != NULL) {
-        if (entry->key == key) {
-            return entry->node;
-        }
-        entry = entry->next;
-    }
-    return NULL; // Key not found
-}
-
-void appendNode(Node** head, int data) {
+// 创建一个新的节点
+Node* createNode(int data) {
     Node* newNode = (Node*)malloc(sizeof(Node));
+    if (newNode == NULL) {
+        exit(EXIT_FAILURE); // 如果内存分配失败，退出程序
+    }
     newNode->data = data;
     newNode->next = NULL;
-
-    if (*head == NULL) {
-        *head = newNode;
-    } else {
-        Node* current = *head;
-        while (current->next != NULL) {
-            current = current->next;
-        }
-        current->next = newNode;
-    }
-    insertHashTable(data, newNode);
+    return newNode;
 }
 
-void deleteNode(Node** head, int data) {
+// 在链表末尾添加一个新节点
+void appendNode(Node** head, int data) {
+    Node* newNode = createNode(data);
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+    Node* current = *head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    current->next = newNode;
+}
+
+// 删除具有特定值的节点
+void deleteNode(Node** head, int key) {
     Node* temp = *head, *prev = NULL;
-    if (temp != NULL && temp->data == data) {
+    if (temp != NULL && temp->data == key) {
         *head = temp->next;
-        deleteHashTable(data);
         free(temp);
         return;
     }
-    while (temp != NULL && temp->data != data) {
+    while (temp != NULL && temp->data != key) {
         prev = temp;
         temp = temp->next;
     }
-    if (temp == NULL) return; // Data not found
+    if (temp == NULL) return;
     prev->next = temp->next;
-    deleteHashTable(data);
     free(temp);
 }
 
-void printList(Node* node) {
-    while (node != NULL) {
-        printf("%d ", node->data);
-        node = node->next;
+// 查找具有特定值的节点
+Node* searchNode(Node* head, int key) {
+    Node* current = head;
+    while (current != NULL) {
+        if (current->data == key) {
+            return current;
+        }
+        current = current->next;
     }
-    printf("\n");
+    return NULL;
 }
 
-void freeHashTable() {
-    for (int i = 0; i < TABLE_SIZE; i++) {
-        HashTableEntry* entry = hashTable[i];
-        while (entry != NULL) {
-            HashTableEntry* temp = entry;
-            entry = entry->next;
-            free(temp);
-        }
+// 修改链表中节点的数据
+void updateNode(Node* head, int oldData, int newData) {
+    Node* current = searchNode(head, oldData);
+    if (current != NULL) {
+        current->data = newData;
+    }
+}
+
+// 打印链表
+void printList(Node* node) {
+    while (node != NULL) {
+        printf("%d -> ", node->data);
+        node = node->next;
+    }
+    printf("NULL\n");
+}
+
+// 释放链表内存
+void freeList(Node* head) {
+    Node* temp;
+    while (head != NULL) {
+        temp = head;
+        head = head->next;
+        free(temp);
     }
 }
 
 int main() {
     Node* head = NULL;
-    initHashTable();
 
-    appendNode(&head, 10);
-    appendNode(&head, 20);
-    appendNode(&head, 30);
-    appendNode(&head, 40);
-    appendNode(&head, 50);
+    // 添加节点
+    appendNode(&head, 1);
+    appendNode(&head, 2);
+    appendNode(&head, 3);
+    appendNode(&head, 4);
 
-    printf("Created Linked list is: ");
+    // 打印链表
+    printf("Initial list: ");
     printList(head);
 
-    Node* foundNode = searchHashTable(30);
+    // 删除节点
+    deleteNode(&head, 3);
+    printf("List after deleting 3: ");
+    printList(head);
+
+    // 查找节点
+    Node* foundNode = searchNode(head, 2);
     if (foundNode != NULL) {
-        printf("Node with data 30 found.\n");
+        printf("Node with data 2 found.\n");
     } else {
-        printf("Node with data 30 not found.\n");
+        printf("Node with data 2 not found.\n");
     }
 
-    deleteNode(&head, 20);
-    printf("Linked List after Deletion of 20: ");
+    // 修改节点
+    updateNode(head, 2, 5);
+    printf("List after updating 2 to 5: ");
     printList(head);
 
-    // Free the linked list
-    Node* current = head;
-    Node* next;
-    while (current != NULL) {
-        next = current->next;
-        free(current);
-        current = next;
-    }
-
-    // Free the hash table
-    freeHashTable();
-
+    // 释放链表内存
+    freeList(head);
     return 0;
 }

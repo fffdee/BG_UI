@@ -32,12 +32,12 @@ void timer_handler(int signum)
        // BGUI_tool.ShowImage(16,16,40,40,gImage_qq);//= malloc(sizeof(BG_List));
         BG_List List;    
         List = BG_List_Init("main-UI");
-        List.Append(&List.head,5,"one");
-        List.Append(&List.head,5,"one4");
+        List.Append(&List.head,1,"one");
+        List.Append(&List.head,5,"one5");
         List.Append(&List.head,2,"one2");
         List.Append(&List.head,3,"one3");
         List.Append(&List.head,4,"one4");
-        
+        List.Show(List.head);
         //BGUI_tool.ShowChar(0,0,'c',0xFFFFFF);
         if(key==0){
             

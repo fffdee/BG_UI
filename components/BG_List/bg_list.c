@@ -5,9 +5,6 @@
 #include "lcd.h"
 
 
-
-
-
 // 创建一个新的节点
 Node* createNode(int id,const char* name) {
     Node* newNode = (Node*)malloc(sizeof(Node));
@@ -26,10 +23,7 @@ void appendNode(Node** head, int id,const char* name) {
     if (*head == NULL) {
         *head = newNode;
         return;
-    }
-    BGUI_tool.ShowString(0,id*16,name,0xffffff);
-    BGUI_tool.DrawLine(0,(id+1)*16,LCD_WIDTH,(id+1)*16,0xFFFFFF);
-    
+    }   
     Node* current = *head;
     while (current->next != NULL) {
         current = current->next;
@@ -77,11 +71,16 @@ void updateNode(Node* head, int oldData, int newData) {
 // 打印链表
 void printList(Node* node) {
     while (node != NULL) {
-        printf("%d -> ", node->data);
-        printf("%s -> ", node->name);
+        // printf("%d -> ", node->data);
+        // printf("%s -> ", node->name);
+        BGUI_tool.ShowString(5,node->id*16,node->name,0xffffff);
+        BGUI_tool.DrawLine(0,(node->id)*16,0,(node->id+1)*16,0xFFFFFF);
+        BGUI_tool.DrawLine(0,(node->id+1)*16,LCD_WIDTH-5,(node->id+1)*16,0xFFFFFF);
+        BGUI_tool.DrawLine(LCD_WIDTH-4,(node->id)*16,LCD_WIDTH-4,(node->id+1)*16,0xFFFFFF);
+        BGUI_tool.DrawLine(LCD_WIDTH-1,(node->id)*16,LCD_WIDTH-1,(node->id+1)*16,0xFFFFFF);
         node = node->next;
     }
-    printf("NULL\n");
+    // printf("NULL\n");
 }
 
 // 释放链表内存
@@ -101,13 +100,15 @@ BG_List BG_List_Init(const char * title)
         .Append = appendNode,
         .Delete = deleteNode,
         .Show = printList,
+       
     };
     BG_list.Data.title = title;
     BG_list.Data.current_id = 0;
     BG_list.head = NULL;
     BGUI_tool.DrawLine(0,0,LCD_WIDTH,0,0xFFFFFF);
+    BGUI_tool.DrawLine(0,0,0,16,0xFFFFFF);
     BGUI_tool.ShowString(LCD_WIDTH/2-(sizeof(title)-2)*4,1,title,0xFFFFFF);
     BGUI_tool.DrawLine(0,16,LCD_WIDTH,16,0xFFFFFF);
-    
+    BGUI_tool.DrawLine(LCD_WIDTH-1,0,LCD_WIDTH-1,16,0xFFFFFF);
     return BG_list;
 }

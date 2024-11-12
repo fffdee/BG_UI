@@ -36,8 +36,9 @@ void timer_handler(int signum)
     {
 
         // BGUI_tool.Circle(64,80,20,0xFFFFFF);
-       // List.Up(List.Data.current_id);
-        List.Data.current_id+=1;
+        List.Up(&List);
+        printf("id is %d \n",List.Data.current_id);
+       // List.Data.current_id+=1;
         key=10;
     }
 
@@ -46,12 +47,13 @@ void timer_handler(int signum)
 
         // BGUI_tool.DrawLine(10,10,60,60,0xFF);
 
-     //   List.Down(List.Data.current_id);
-        List.Data.current_id-=1;
+        List.Down(&List);
+        printf("id is %d \n",List.Data.current_id);
+       // List.Data.current_id-=1;
         key=10;
     }
 
-    List.Show(List.head, List.Data.current_id,List.Data.title);
+    List.Show(&List);
     // BGUI_tool.ShowChar(0,0,'c',0xFFFFFF);
 
     BG_SIM_Lcd.Update();
@@ -78,27 +80,33 @@ int main(int argc, char *argv[])
 {
 
     BG_input_handle.KeyBoardInit();
-    BG_SIM_Lcd.Init("Point", 0);
-    List = BG_List_Init("main-UI");
-    List.Append(&List.head, 1, "one");
-    List.Append(&List.head, 2, "one2");
-    List.Append(&List.head, 3, "one3");
-    List.Append(&List.head, 4, "one4");
-    List.Append(&List.head, 5, "one5");
-    List.Append(&List.head, 6, "one6");
-    List.Append(&List.head, 7, "one7");
-    List.Append(&List.head, 8, "one8");
-    List.Append(&List.head, 9, "one9");
+    BG_SIM_Lcd.Init("BanGUI_LCD", 0);
+    List = BG_List_Init("GUITAR");
+    List.Append(&List, "Dist", 1);
+    List.Append(&List, "Delay", 2);
+    List.Append(&List, "Chors", 3);
+    List.Append(&List, "Reverb", 4);
+    List.Append(&List, "Pitch", 5);
+    List.Append(&List, "Change", 6);
+    List.Append(&List, "KKGO", 7);
+    List.Append(&List, "CS GO", 8);
+    List.Append(&List, "CF", 9);
     time_init();
 
     while (1)
     {
 
         keyinput = BG_input_handle.KeyBoardLoop();
-        if (keyinput == 99)
+        if (keyinput == 99){
             key = 0;
-        if (keyinput == 100)
-            key = 1;
+   
+        }
+            
+        if (keyinput == 100){
+             key = 1;    
+     
+        }
+           
         printf("data is %d\n", keyinput);
     }
 }

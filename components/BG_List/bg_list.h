@@ -15,18 +15,21 @@ typedef struct
 {
     const char* title;
     uint8_t current_id;
+    uint8_t max_id;
+    uint8_t min_show_count;
+    uint8_t max_show_count;
 
 }BG_List_Data;
 
-typedef struct{
+typedef struct BG_List{
 
-    void (*Append)(Node**, int,const char*);
+    void (*Append)(struct BG_List*,const char*, uint16_t );
     void (*Delete)(Node**, int);
-    void (*Show)(Node*,uint8_t,char* );
-    void (*Up)(uint8_t*);
-    void (*Down)(uint8_t*);
+    void (*Show)(struct BG_List*);
+    void (*Up)(struct BG_List*);
+    void (*Down)(struct BG_List*);
     BG_List_Data Data; 
-    Node* head;   
+    Node* head;    
 
 }BG_List;
 

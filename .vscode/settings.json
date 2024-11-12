@@ -7,6 +7,7 @@
         "lcd.h": "c",
         "bg_page.h": "c",
         "bg_list.h": "c",
-        "thread": "c"
+        "thread": "c",
+        "stdint.h": "c"
     }
 }

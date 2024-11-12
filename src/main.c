@@ -17,50 +17,48 @@
 
 struct timeval start_time;
 char keyinput;
-uint8_t running=1; 
+uint8_t running = 1;
 uint8_t key = 2;
+BG_List List;
 void timer_handler(int signum)
 {
- 
-        BG_SIM_Lcd.Loop(&running);
-     
-        BG_SIM_Lcd.Clear(0x000000);
-        
-      //  BG_SIM_Lcd.DrawPoint(64,80,0xFFFFFF);
-        //BGUI_tool.ShowString(1,1,"hello world!",0xFF00FF);
 
-       // BGUI_tool.ShowImage(16,16,40,40,gImage_qq);//= malloc(sizeof(BG_List));
-        BG_List List;    
-        List = BG_List_Init("main-UI");
-        List.Append(&List.head,1,"one");
-        List.Append(&List.head,5,"one5");
-        List.Append(&List.head,2,"one2");
-        List.Append(&List.head,3,"one3");
-        List.Append(&List.head,4,"one4");
-        List.Show(List.head);
-        //BGUI_tool.ShowChar(0,0,'c',0xFFFFFF);
-        if(key==0){
-            
-            BGUI_tool.Circle(64,80,20,0xFFFFFF);
-            
+    BG_SIM_Lcd.Loop(&running);
 
-        }
+    BG_SIM_Lcd.Clear(0x000000);
 
-        if(key==1){
-            
-           BGUI_tool.DrawLine(10,10,60,60,0xFF);
-           
+    //  BG_SIM_Lcd.DrawPoint(64,80,0xFFFFFF);
+    // BGUI_tool.ShowString(1,1,"hello world!",0xFF00FF);
 
-        }
-   
-        
-        BG_SIM_Lcd.Update();
-         if(running==0){
-            BG_SIM_Lcd.DeInit();
-           
-        }
-        
+    // BGUI_tool.ShowImage(16,16,40,40,gImage_qq);//= malloc(sizeof(BG_List));
 
+    if (key == 0)
+    {
+
+        // BGUI_tool.Circle(64,80,20,0xFFFFFF);
+       // List.Up(List.Data.current_id);
+        List.Data.current_id+=1;
+        key=10;
+    }
+
+    if (key == 1)
+    {
+
+        // BGUI_tool.DrawLine(10,10,60,60,0xFF);
+
+     //   List.Down(List.Data.current_id);
+        List.Data.current_id-=1;
+        key=10;
+    }
+
+    List.Show(List.head, List.Data.current_id,List.Data.title);
+    // BGUI_tool.ShowChar(0,0,'c',0xFFFFFF);
+
+    BG_SIM_Lcd.Update();
+    if (running == 0)
+    {
+        BG_SIM_Lcd.DeInit();
+    }
 }
 
 void time_init()
@@ -76,23 +74,31 @@ void time_init()
     gettimeofday(&start_time, NULL);
 }
 
+int main(int argc, char *argv[])
+{
 
-int main(int argc, char* argv[]) {
-    
     BG_input_handle.KeyBoardInit();
-    BG_SIM_Lcd.Init("Point",0);
-    
+    BG_SIM_Lcd.Init("Point", 0);
+    List = BG_List_Init("main-UI");
+    List.Append(&List.head, 1, "one");
+    List.Append(&List.head, 2, "one2");
+    List.Append(&List.head, 3, "one3");
+    List.Append(&List.head, 4, "one4");
+    List.Append(&List.head, 5, "one5");
+    List.Append(&List.head, 6, "one6");
+    List.Append(&List.head, 7, "one7");
+    List.Append(&List.head, 8, "one8");
+    List.Append(&List.head, 9, "one9");
     time_init();
-    
-    while(1){
-        
-       
-        keyinput =  BG_input_handle.KeyBoardLoop();
-        if(keyinput == 99) key=0;
-        if(keyinput==100) key=1;
-        printf("data is %d\n",keyinput);
-      
 
+    while (1)
+    {
+
+        keyinput = BG_input_handle.KeyBoardLoop();
+        if (keyinput == 99)
+            key = 0;
+        if (keyinput == 100)
+            key = 1;
+        printf("data is %d\n", keyinput);
     }
- 
 }

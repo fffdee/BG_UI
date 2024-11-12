@@ -68,19 +68,43 @@ void updateNode(Node* head, int oldData, int newData) {
     }
 }
 
+void List_select(uint8_t id){
+
+    for(uint16_t x=0; x<LCD_WIDTH-5;x++)
+    {
+        for(uint16_t y=0; y<16;y++){
+            BG_SIM_Lcd.DrawPoint(x,y+id*16,0xFFFFFF);
+        }
+    }
+}
 // 打印链表
-void printList(Node* node) {
+void printList(Node* node,uint8_t id,char* title) {
+    
+    BGUI_tool.DrawLine(0,0,LCD_WIDTH,0,0xFFFFFF);
+    BGUI_tool.DrawLine(0,0,0,16,0xFFFFFF);
+    BGUI_tool.ShowString(LCD_WIDTH/2-(sizeof(title)-2)*4,1,title,0xFFFFFF);
+    BGUI_tool.DrawLine(0,16,LCD_WIDTH,16,0xFFFFFF);
+    BGUI_tool.DrawLine(LCD_WIDTH-1,0,LCD_WIDTH-1,16,0xFFFFFF);
     while (node != NULL) {
-        // printf("%d -> ", node->data);
-        // printf("%s -> ", node->name);
-        BGUI_tool.ShowString(5,node->id*16,node->name,0xffffff);
+
+        
+        if(id==node->id){
+              List_select(id);
+              BGUI_tool.ShowString(5,node->id*16,node->name,0x00);
+             // printf("ok");
+        }else{
+              BGUI_tool.ShowString(5,node->id*16,node->name,0xffffff);
+              // printf("err");
+        }
+      
         BGUI_tool.DrawLine(0,(node->id)*16,0,(node->id+1)*16,0xFFFFFF);
         BGUI_tool.DrawLine(0,(node->id+1)*16,LCD_WIDTH-5,(node->id+1)*16,0xFFFFFF);
         BGUI_tool.DrawLine(LCD_WIDTH-4,(node->id)*16,LCD_WIDTH-4,(node->id+1)*16,0xFFFFFF);
         BGUI_tool.DrawLine(LCD_WIDTH-1,(node->id)*16,LCD_WIDTH-1,(node->id+1)*16,0xFFFFFF);
         node = node->next;
+
     }
-    // printf("NULL\n");
+
 }
 
 // 释放链表内存
@@ -92,6 +116,16 @@ void freeList(Node* head) {
         free(temp);
     }
 }
+void Select_up(uint8_t *id)
+{
+    *id++;
+ 
+}
+
+void Select_down(uint8_t *id)
+{
+    *id--;
+}
 
 BG_List BG_List_Init(const char * title)
 {
@@ -100,15 +134,16 @@ BG_List BG_List_Init(const char * title)
         .Append = appendNode,
         .Delete = deleteNode,
         .Show = printList,
+        .Up   = Select_up,
+        .Down = Select_down,
        
     };
+
     BG_list.Data.title = title;
-    BG_list.Data.current_id = 0;
+    BG_list.Data.current_id = 4;
     BG_list.head = NULL;
-    BGUI_tool.DrawLine(0,0,LCD_WIDTH,0,0xFFFFFF);
-    BGUI_tool.DrawLine(0,0,0,16,0xFFFFFF);
-    BGUI_tool.ShowString(LCD_WIDTH/2-(sizeof(title)-2)*4,1,title,0xFFFFFF);
-    BGUI_tool.DrawLine(0,16,LCD_WIDTH,16,0xFFFFFF);
-    BGUI_tool.DrawLine(LCD_WIDTH-1,0,LCD_WIDTH-1,16,0xFFFFFF);
+ 
+
+
     return BG_list;
 }

@@ -22,7 +22,9 @@ typedef struct{
 
     void (*Append)(Node**, int,const char*);
     void (*Delete)(Node**, int);
-    void (*Show)(Node*);
+    void (*Show)(Node*,uint8_t,char* );
+    void (*Up)(uint8_t*);
+    void (*Down)(uint8_t*);
     BG_List_Data Data; 
     Node* head;   
 

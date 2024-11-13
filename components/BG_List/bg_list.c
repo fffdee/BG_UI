@@ -114,15 +114,30 @@ void ShowList(BG_List *list)
     BGUI_tool.DrawLine(0, 0, 0, 16, 0xFFFFFF);
     BGUI_tool.ShowString(LCD_WIDTH / 2 - (sizeof(list->Data.title) - 2) * 4, 1, (uint8_t *)list->Data.title, 0xFFFFFF);
     BGUI_tool.DrawLine(0, 16, LCD_WIDTH, 16, 0xFFFFFF);
-    BGUI_tool.DrawLine(LCD_WIDTH - 1, 0, LCD_WIDTH -1, 16, 0xFFFFFF);
+    BGUI_tool.DrawLine(LCD_WIDTH - 1, 0, LCD_WIDTH - 1, 16, 0xFFFFFF);
 
     Node *current = list->head; // 使用临时指针来遍历链表
+    
+    if(list->Data.isEnter==1){
+        list->Data.flash_run_time++;
+        if(list->Data.flash_run_time>list->Data.flash_time){
+            list->Data.flash_run_time = 0;
+        }
+        if(list->Data.flash_run_time<list->Data.flash_time/2){
+            list->Data.flash_flag = 1;
+        }else{
+            list->Data.flash_flag = 0;
+        }
+    }
+
+    
     while (current != NULL)
     {
         if (current->id - list->Data.min_show_count > 0)
         {
-            if (list->Data.current_id == current->id)
-            {
+            if (list->Data.current_id == current->id&&list->Data.flash_flag==1)
+            {   
+                
                 List_select(list->Data.current_id, list->Data.min_show_count);
                 BGUI_tool.ShowString(5, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->name, 0x00);
             }
@@ -131,26 +146,49 @@ void ShowList(BG_List *list)
                 BGUI_tool.ShowString(5, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->name, 0xffffff);
             }
         }
-       // printf("Data.min_show_count = %d\n", list->Data.min_show_count);
+        // printf("Data.min_show_count = %d\n", list->Data.min_show_count);
         BGUI_tool.DrawLine(0, (current->id) * 16, 0, (current->id + 1) * 16, 0xFFFFFF);
-        BGUI_tool.DrawLine(0, (current->id + 1 - list->Data.min_show_count) * 16, LCD_WIDTH -LCD_WIDTH/40-1, (current->id + 1 - list->Data.min_show_count) * 16, 0xFFFFFF);
-        BGUI_tool.DrawLine(LCD_WIDTH - LCD_WIDTH/40-1, (current->id) * 16, LCD_WIDTH -LCD_WIDTH/40-1, (current->id + 1) * 16, 0xFFFFFF);
+        BGUI_tool.DrawLine(0, (current->id + 1 - list->Data.min_show_count) * 16, LCD_WIDTH - LCD_WIDTH / 40 - 1, (current->id + 1 - list->Data.min_show_count) * 16, 0xFFFFFF);
+        BGUI_tool.DrawLine(LCD_WIDTH - LCD_WIDTH / 40 - 1, (current->id) * 16, LCD_WIDTH - LCD_WIDTH / 40 - 1, (current->id + 1) * 16, 0xFFFFFF);
         BGUI_tool.DrawLine(LCD_WIDTH - 1, (current->id) * 16, LCD_WIDTH - 1, (current->id + 1) * 16, 0xFFFFFF);
-        for(uint8_t count=0;count<LCD_WIDTH/40;count++){
-               if((list->Data.min_show_count+list->Data.max_show_count)==list->Data.max_id){
-                    BGUI_tool.DrawLine(LCD_WIDTH - count-2
-                , (list->Data.min_show_count%list->Data.max_show_count) * (LCD_HEIGHT-16)/7 +16, LCD_WIDTH - count-2
-                , list->Data.max_id * (LCD_HEIGHT-16)/list->Data.max_id+16 
-                , 0xFFFFFF);
-               }
-               else{
-                BGUI_tool.DrawLine(LCD_WIDTH - count-2
-                , (list->Data.min_show_count%list->Data.max_show_count) * (LCD_HEIGHT-16)/7 +16, LCD_WIDTH - count-2
-                , ((list->Data.min_show_count+list->Data.max_show_count)%list->Data.max_id) * (LCD_HEIGHT-16)/list->Data.max_id+16 
-                , 0xFFFFFF);
-               }
+        uint16_t y_start, y_over;
+        for (uint8_t count = 0; count < LCD_WIDTH / 40; count++)
+        {
+
+            if ((list->Data.min_show_count + list->Data.max_show_count) == list->Data.max_id)
+            {
+                y_start = (list->Data.min_show_count % list->Data.max_show_count) * (LCD_HEIGHT - 16) / 7 + 16;
+                 
+                if (list->Data.max_show_count <= list->Data.max_id)
+                {
+                    y_over = list->Data.max_id * (LCD_HEIGHT - 16) / list->Data.max_id + 16;
+                }
+                else
+                {
+                    y_over = (list->Data.max_id%list->Data.max_show_count+1) * 16;
+                  
+                }
+            }
+            else
+            {
+               
+                y_start = (list->Data.min_show_count % list->Data.max_show_count) * (LCD_HEIGHT - 16) / 7 + 16;
+                y_over = ((list->Data.min_show_count + list->Data.max_show_count) % list->Data.max_id) * (LCD_HEIGHT - 16) / list->Data.max_id + 16;
+                if (list->Data.max_show_count <= list->Data.max_id)
+                {
+                    y_over = ((list->Data.min_show_count + list->Data.max_show_count) % list->Data.max_id) * (LCD_HEIGHT - 16) / list->Data.max_id + 16;
+                    
+                }
+                else
+                {
+                    y_over = (list->Data.max_id%list->Data.max_show_count+1)* 16;
+                    
+                }
+            }
+
+            BGUI_tool.DrawLine(LCD_WIDTH - count - 2, y_start, LCD_WIDTH - count - 2, y_over, 0xFFFFFF);
         }
-     
+
         // BGUI_tool.DrawLine(LCD_WIDTH - 3, (current->id) * 16, LCD_WIDTH - 3, (current->id + 1) * 16, 0xFFFFFF);
         current = current->next; // 移动到下一个节点
     }
@@ -188,6 +226,18 @@ void Select_up(BG_List *list)
     }
 }
 
+void Select_Enter(BG_List *list)
+{
+
+    if(list->Data.isEnter ==1){
+         list->Data.isEnter = 0;  
+         list->Data.flash_flag=1; 
+    }else if(list->Data.isEnter==0){
+         list->Data.isEnter = 1;
+    }
+
+}
+
 void Select_down(BG_List *list)
 {
 
@@ -213,16 +263,20 @@ BG_List BG_List_Init(const char *title)
 {
     BG_List BG_list = {
 
+
         .Append = appendNode,
         .Delete = deleteNode,
         .Show = ShowList,
         .Up = Select_up,
         .Down = Select_down,
-
+        .Enter = Select_Enter,
     };
 
     BG_list.Data.title = title;
     BG_list.Data.current_id = 4;
+    BG_list.Data.isEnter = 1;
+    BG_list.Data.flash_flag = 0;
+    BG_list.Data.flash_time = FLASH_TIME;
     BG_list.Data.max_show_count = LCD_HEIGHT / 16 - 1;
     if (BG_list.Data.current_id <= BG_list.Data.max_show_count)
     {

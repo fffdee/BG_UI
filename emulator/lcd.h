@@ -4,7 +4,7 @@
 #include<stdint.h>
 
 #define LCD_HEIGHT 128
-#define LCD_WIDTH 160
+#define LCD_WIDTH  160
 
 
 typedef struct 
@@ -14,7 +14,7 @@ typedef struct
     void (*DrawPoint)(uint16_t,uint16_t,uint32_t);
     void (*Clear)(uint32_t);
     void (*Update)(void);
-    uint8_t (*Loop)(uint8_t*);
+    uint8_t (*Loop)(uint8_t*);    
 
 }BG_SIM_LCD;
 

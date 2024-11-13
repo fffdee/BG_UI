@@ -46,8 +46,19 @@ void timer_handler(int signum)
     {
 
         // BGUI_tool.DrawLine(10,10,60,60,0xFF);
-
+        
         List.Down(&List);
+        printf("id is %d \n",List.Data.current_id);
+       // List.Data.current_id-=1;
+        key=10;
+    }
+
+    if (key == 2)
+    {
+
+        // BGUI_tool.DrawLine(10,10,60,60,0xFF);
+
+        List.Enter(&List);
         printf("id is %d \n",List.Data.current_id);
        // List.Data.current_id-=1;
         key=10;
@@ -97,13 +108,17 @@ int main(int argc, char *argv[])
     {
 
         keyinput = BG_input_handle.KeyBoardLoop();
-        if (keyinput == 99){
+        if (keyinput == 115){
             key = 0;
    
         }
             
-        if (keyinput == 100){
+        if (keyinput == 119){
              key = 1;    
+     
+        }
+        if (keyinput == 0){
+             key = 2;    
      
         }
            

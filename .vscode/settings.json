@@ -8,6 +8,7 @@
         "bg_page.h": "c",
         "bg_list.h": "c",
         "thread": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "gui_tool.h": "c"
     }
 }

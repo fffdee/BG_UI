@@ -1,11 +1,12 @@
 #include "bg_list.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "gui_tool.h"
 #include "lcd.h"
 
 // 创建一个新的节点
-Node *createNode(int id, const char *name, uint16_t data)
+Node *createNode(int id, const char *name, uint16_t data,const char *unit)
 {
     Node *newNode = (Node *)malloc(sizeof(Node));
     if (newNode == NULL)
@@ -15,14 +16,15 @@ Node *createNode(int id, const char *name, uint16_t data)
     newNode->id = id;
     newNode->data = data;
     newNode->name = name;
+    newNode->unit = unit;
     newNode->next = NULL;
     return newNode;
 }
 
-void appendNode(BG_List *list, const char *name, uint16_t data)
+void appendNode(BG_List *list, const char *name, uint16_t data,const char *unit)
 {
     // 创建新节点
-    Node *newNode = createNode(list->Data.max_id + 1, name, data);
+    Node *newNode = createNode(list->Data.max_id + 1, name, data,unit);
 
     // 如果链表为空，则新节点成为头节点
     if (list->head == NULL)
@@ -102,6 +104,26 @@ void List_select(uint8_t id, uint8_t min_count)
         }
     }
 }
+
+uint8_t get_num_bit(uint32_t num)
+{
+	uint8_t bit_count = 0;
+	if (num == 0)
+	{ // 特殊情况，0是一位数
+		bit_count = 1;
+	}
+	else
+	{
+		uint32_t temp = num;
+		while (temp != 0)
+		{
+			temp /= 10; // 整除10
+			bit_count++;
+		}
+	}
+    return bit_count;
+}
+
 void ShowList(BG_List *list)
 {
     if (list == NULL || list->head == NULL)
@@ -112,7 +134,7 @@ void ShowList(BG_List *list)
 
     BGUI_tool.DrawLine(0, 0, LCD_WIDTH, 0, 0xFFFFFF);
     BGUI_tool.DrawLine(0, 0, 0, 16, 0xFFFFFF);
-    BGUI_tool.ShowString(LCD_WIDTH / 2 - (sizeof(list->Data.title) - 2) * 4, 1, (uint8_t *)list->Data.title, 0xFFFFFF);
+    BGUI_tool.ShowString(LCD_WIDTH / 2 - (strlen(list->Data.title)) * 4, 1, (uint8_t *)list->Data.title, 0xFFFFFF);
     BGUI_tool.DrawLine(0, 16, LCD_WIDTH, 16, 0xFFFFFF);
     BGUI_tool.DrawLine(LCD_WIDTH - 1, 0, LCD_WIDTH - 1, 16, 0xFFFFFF);
 
@@ -137,13 +159,20 @@ void ShowList(BG_List *list)
         {
             if (list->Data.current_id == current->id&&list->Data.flash_flag==1)
             {   
-                
+                uint16_t x = LCD_WIDTH - LCD_WIDTH / 40 - 1-strlen(current->unit)*8;
                 List_select(list->Data.current_id, list->Data.min_show_count);
                 BGUI_tool.ShowString(5, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->name, 0x00);
+                BGUI_tool.ShowString(x,(current->id - list->Data.min_show_count) * 16,(uint8_t *)current->unit,0x00);
+                BGUI_tool.ShowNum(60,(current->id - list->Data.min_show_count) * 16,3333,0x00);
+                //printf("%d\n",x-get_num_bit(current->data)*8-4);
+                printf("%d\n",get_num_bit(current->data)*8-4);
             }
             else
             {
+                uint16_t x = LCD_WIDTH - LCD_WIDTH / 40 - 1-strlen(current->unit)*8;
                 BGUI_tool.ShowString(5, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->name, 0xffffff);
+                BGUI_tool.ShowString(x,(current->id - list->Data.min_show_count) * 16,(uint8_t *)current->unit,0xffffff);
+                //BGUI_tool.ShowNum(x-get_num_bit(current->data)*8-4,(current->id - list->Data.min_show_count) * 16,current->data,0xffffff);
             }
         }
         // printf("Data.min_show_count = %d\n", list->Data.min_show_count);

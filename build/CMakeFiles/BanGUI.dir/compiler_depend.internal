@@ -61,6 +61,10 @@ CMakeFiles/BanGUI.dir/components/BG_List/bg_list.c.o
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h
  /usr/include/alloca.h
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+ /usr/include/string.h
+ /usr/include/x86_64-linux-gnu/bits/types/locale_t.h
+ /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h
+ /usr/include/strings.h
  /home/bango/BanGUI/components/base_func/gui_tool.h
  /home/bango/BanGUI/emulator/lcd.h
 

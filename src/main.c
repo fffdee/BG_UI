@@ -65,12 +65,14 @@ void timer_handler(int signum)
     }
 
     List.Show(&List);
+    BGUI_tool.ShowNum(0,0,443334,0xffffff);
     // BGUI_tool.ShowChar(0,0,'c',0xFFFFFF);
 
     BG_SIM_Lcd.Update();
     if (running == 0)
     {
-        BG_SIM_Lcd.DeInit();
+        BG_SIM_Lcd.DeInit();   
+
     }
 }
 
@@ -93,15 +95,16 @@ int main(int argc, char *argv[])
     BG_input_handle.KeyBoardInit();
     BG_SIM_Lcd.Init("BanGUI_LCD", 0);
     List = BG_List_Init("GUITAR");
-    List.Append(&List, "Dist", 1);
-    List.Append(&List, "Delay", 2);
-    List.Append(&List, "Chors", 3);
-    List.Append(&List, "Reverb", 4);
-    List.Append(&List, "Pitch", 5);
-    List.Append(&List, "Change", 6);
-    List.Append(&List, "KKGO", 7);
-    List.Append(&List, "CS GO", 8);
-    List.Append(&List, "CF", 9);
+    List.Append(&List, "Dist", 1,"kms");
+    List.Append(&List, "Delay", 2,"km");
+    List.Append(&List, "Chors", 3,"kmc");
+    List.Append(&List, "Reverb", 4,"kmss");
+    List.Append(&List, "Pitch", 5,"km");
+    List.Append(&List, "Change", 6,"kmsss");
+    List.Append(&List, "KKGO", 7,"kmsww");
+    List.Append(&List, "CS GO", 8,"kwm");
+    List.Append(&List, "CF", 9,"kqm");
+    
     time_init();
 
     while (1)

@@ -7,14 +7,17 @@
 void Gui_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t Color);
 void Gui_Circle(uint16_t X, uint16_t Y, uint16_t R, uint32_t fc);
 void Gui_ShowChar(uint16_t x0, uint16_t y0, uint8_t chr, uint32_t fc);
+void Gui_ShowNum(uint16_t x0, uint16_t y0, uint32_t num, uint32_t fc);
 void Gui_ShowString(uint16_t x0, uint16_t y0, uint8_t *chr, uint32_t fc);
-void Gui_ShowImage(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1,const uint8_t *chr);
+void Gui_ShowImage(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, const uint8_t *chr);
 
-BGUI_Tool BGUI_tool = {//BGUI_tool.ShowString(0,0,"hello world!",0xFFFF);
-       
+BGUI_Tool BGUI_tool = {
+	// BGUI_tool.ShowString(0,0,"hello world!",0xFFFF);
+
 	.DrawLine = Gui_DrawLine,
 	.Circle = Gui_Circle,
 	.ShowChar = Gui_ShowChar,
+	.ShowNum = Gui_ShowNum,
 	.ShowString = Gui_ShowString,
 	.ShowImage = Gui_ShowImage,
 };
@@ -88,7 +91,7 @@ void Gui_Circle(uint16_t X, uint16_t Y, uint16_t R, uint32_t fc)
 void Gui_ShowChar(uint16_t x0, uint16_t y0, uint8_t chr, uint32_t fc)
 {
 
-	unsigned char c = 0, i = 0,y;
+	unsigned char c = 0, i = 0, y;
 	uint8_t ch;
 	c = chr - ' '; // 得到偏移后的值
 	if (x0 > LCD_WIDTH - 1)
@@ -97,39 +100,41 @@ void Gui_ShowChar(uint16_t x0, uint16_t y0, uint8_t chr, uint32_t fc)
 		y0 = y0 + 16;
 	}
 	for (uint8_t w = 0; w < 8; w++)
-	{	
-		y=y0;
-		//printf("in func %d\n",c);
+	{
+		y = y0;
+		// printf("in func %d\n",c);
 		for (uint8_t h = 0; h < 8; h++)
 		{
 			ch = F8x16[c * 16 + w];
-			//printf("ch is %d\n",ch);
-			if ((ch>>h & 0x01) == 1)
+			// printf("ch is %d\n",ch);
+			if ((ch >> h & 0x01) == 1)
 			{
 				BG_SIM_Lcd.DrawPoint(x0 + w, y, fc);
-				//printf("drawpoint 1 %d %d \n", x0 + w,y); // 使用 %u 或 %d 来格式化 unsigned char
+				// printf("drawpoint 1 %d %d \n", x0 + w,y); // 使用 %u 或 %d 来格式化 unsigned char
 			}
-			
+
 			y++;
 		}
 	}
-	 
+
 	for (uint8_t w = 0; w < 8; w++)
 	{
-		y=y0+8;
+		y = y0 + 8;
 		for (uint8_t h = 0; h < 8; h++)
 		{
-			ch= F8x16[c * 16 + w + 8];
-			if ((ch>>h & 0x01) == 1)
+			ch = F8x16[c * 16 + w + 8];
+			if ((ch >> h & 0x01) == 1)
 			{
 				BG_SIM_Lcd.DrawPoint(x0 + w, y, fc);
-				//printf("drawpoint 2 %d %d \n", x0 + w,y); 
+				// printf("drawpoint 2 %d %d \n", x0 + w,y);
 			}
-			ch= ch >> 1;
+			ch = ch >> 1;
 			y++;
 		}
 	}
 }
+
+
 void Gui_ShowString(uint16_t x0, uint16_t y0, uint8_t *chr, uint32_t fc)
 {
 	unsigned char j = 0;
@@ -137,7 +142,7 @@ void Gui_ShowString(uint16_t x0, uint16_t y0, uint8_t *chr, uint32_t fc)
 	{
 		Gui_ShowChar(x0, y0, chr[j], fc);
 		x0 += 8;
-		if (x0 > LCD_WIDTH-8)
+		if (x0 > LCD_WIDTH - 8)
 		{
 			x0 = 0;
 			y0 += 16;
@@ -146,31 +151,60 @@ void Gui_ShowString(uint16_t x0, uint16_t y0, uint8_t *chr, uint32_t fc)
 	}
 }
 
-void Gui_ShowImage(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, const uint8_t *chr) {
-    for (uint8_t y = 0; y < y1; y++) {
-        for (uint8_t x = 0; x < x1; x++) {
-            uint16_t color565 = 0x00;
-            color565 = (chr[x * 2 + 1 + y * x1 * 2] << 8) | chr[x * 2 + y * x1 * 2];
+void Gui_ShowNum(uint16_t x0, uint16_t y0, uint32_t num, uint32_t fc)
+{
+	uint8_t bit_count = 0;
+	if (num == 0)
+	{ // 特殊情况，0是一位数
+		bit_count = 1;
+	}
+	else
+	{
+		uint32_t temp = num;
+		while (temp != 0)
+		{
+			temp /= 10; // 整除10
+			bit_count++;
+		}
+	}
 
-            // 提取RGB565中的RGB值
-            uint8_t r = (color565 >> 11) & 0x1F;
-            uint8_t g = (color565 >> 5) & 0x3F;
-            uint8_t b = color565 & 0x1F;
-
-            // 将5位和6位RGB值扩展到8位
-            r = (r * 255) / 31; // 5位红色扩展到8位
-            g = (g * 255) / 63; // 6位绿色扩展到8位
-            b = (b * 255) / 31; // 5位蓝色扩展到8位
-
-            // 组合成24位RGB颜色值
-            uint32_t color24 = (uint32_t)r << 16 | (uint32_t)g << 8 | (uint32_t)b;
-
-            // 绘制点
-            BG_SIM_Lcd.DrawPoint(x0 + x, y0 + y, color24);
-        }
-    }
+	char char_num[bit_count]; // 使用char类型数组
+	for (uint8_t i = 0; i < bit_count; i++)
+	{
+		char_num[bit_count - i - 1] = (num % 10) + '0'; // 转换为字符并存储
+		num /= 10;										// 更新num为下一位数字
+		//printf("char num is %c\n", char_num[bit_count - i - 1]);
+	}
+	Gui_ShowString(x0, y0, char_num, 0xffffff);
 }
 
+void Gui_ShowImage(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, const uint8_t *chr)
+{
+	for (uint8_t y = 0; y < y1; y++)
+	{
+		for (uint8_t x = 0; x < x1; x++)
+		{
+			uint16_t color565 = 0x00;
+			color565 = (chr[x * 2 + 1 + y * x1 * 2] << 8) | chr[x * 2 + y * x1 * 2];
+
+			// 提取RGB565中的RGB值
+			uint8_t r = (color565 >> 11) & 0x1F;
+			uint8_t g = (color565 >> 5) & 0x3F;
+			uint8_t b = color565 & 0x1F;
+
+			// 将5位和6位RGB值扩展到8位
+			r = (r * 255) / 31; // 5位红色扩展到8位
+			g = (g * 255) / 63; // 6位绿色扩展到8位
+			b = (b * 255) / 31; // 5位蓝色扩展到8位
+
+			// 组合成24位RGB颜色值
+			uint32_t color24 = (uint32_t)r << 16 | (uint32_t)g << 8 | (uint32_t)b;
+
+			// 绘制点
+			BG_SIM_Lcd.DrawPoint(x0 + x, y0 + y, color24);
+		}
+	}
+}
 
 void Gui_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t Color)
 {

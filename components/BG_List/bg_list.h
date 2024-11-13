@@ -9,6 +9,7 @@ typedef struct Node {
     int data;
     int id;
     const char* name; 
+    const char* unit;
     struct Node* next;
 } Node;
 
@@ -23,11 +24,12 @@ typedef struct
     uint8_t flash_flag;
     uint16_t flash_time; 
     uint16_t flash_run_time;
+
 }BG_List_Data;
 
 typedef struct BG_List{
 
-    void (*Append)(struct BG_List*,const char*, uint16_t );
+    void (*Append)(struct BG_List*,const char*, uint16_t,const char*);
     void (*Delete)(Node**, int);
     void (*Show)(struct BG_List*);
     void (*Up)(struct BG_List*);

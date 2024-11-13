@@ -60,6 +60,10 @@ CMakeFiles/BanGUI.dir/components/BG_List/bg_list.c.o: ../components/BG_List/bg_l
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/string.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/strings.h \
   ../components/base_func/gui_tool.h \
   ../emulator/lcd.h
 
@@ -973,6 +977,14 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
+
+/usr/include/strings.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/pmmintrin.h:
+
 /usr/include/x86_64-linux-gnu/bits/fp-fast.h:
 
 ../components/base_func/gui_tool.c:
@@ -1004,14 +1016,6 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx512cdintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
-
-/usr/include/strings.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/pmmintrin.h:
 
 /usr/include/SDL2/SDL_blendmode.h:
 

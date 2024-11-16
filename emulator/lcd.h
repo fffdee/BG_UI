@@ -3,8 +3,8 @@
 
 #include<stdint.h>
 
-#define LCD_HEIGHT 128
-#define LCD_WIDTH  160
+#define LCD_HEIGHT 240
+#define LCD_WIDTH  320
 
 
 typedef struct 

@@ -25,7 +25,7 @@ void timer_handler(int signum)
 
     BG_SIM_Lcd.Loop(&running);
 
-    BG_SIM_Lcd.Clear(0x000000);
+    
 
     //  BG_SIM_Lcd.DrawPoint(64,80,0xFFFFFF);
     // BGUI_tool.ShowString(1,1,"hello world!",0xFF00FF);
@@ -34,41 +34,47 @@ void timer_handler(int signum)
 
     if (key == 0)
     {
-
+        BG_SIM_Lcd.Clear(0x000000);
         // BGUI_tool.Circle(64,80,20,0xFFFFFF);
         List.Up(&List);
         printf("id is %d \n",List.Data.current_id);
        // List.Data.current_id+=1;
         key=10;
+        List.Show(&List);
+        BG_SIM_Lcd.Update();
     }
 
     if (key == 1)
     {
 
         // BGUI_tool.DrawLine(10,10,60,60,0xFF);
-        
+        BG_SIM_Lcd.Clear(0x000000);
         List.Down(&List);
         printf("id is %d \n",List.Data.current_id);
        // List.Data.current_id-=1;
         key=10;
+        List.Show(&List);
+        BG_SIM_Lcd.Update();
     }
 
     if (key == 2)
     {
 
         // BGUI_tool.DrawLine(10,10,60,60,0xFF);
-
+        BG_SIM_Lcd.Clear(0x000000);
         List.Enter(&List);
         printf("id is %d \n",List.Data.current_id);
        // List.Data.current_id-=1;
         key=10;
+        List.Show(&List);
+        BG_SIM_Lcd.Update();
     }
 
-    List.Show(&List);
-    BGUI_tool.ShowNum(0,0,443334,0xffffff);
+    
+    //BGUI_tool.ShowNum(0,0,443334,0xffffff);
     // BGUI_tool.ShowChar(0,0,'c',0xFFFFFF);
 
-    BG_SIM_Lcd.Update();
+   
     if (running == 0)
     {
         BG_SIM_Lcd.DeInit();   
@@ -95,15 +101,15 @@ int main(int argc, char *argv[])
     BG_input_handle.KeyBoardInit();
     BG_SIM_Lcd.Init("BanGUI_LCD", 0);
     List = BG_List_Init("GUITAR");
-    List.Append(&List, "Dist", 1,"kms");
+    List.Append(&List, "Dist", 1,"val");
     List.Append(&List, "Delay", 2,"km");
-    List.Append(&List, "Chors", 3,"kmc");
-    List.Append(&List, "Reverb", 4,"kmss");
-    List.Append(&List, "Pitch", 5,"km");
-    List.Append(&List, "Change", 6,"kmsss");
-    List.Append(&List, "KKGO", 7,"kmsww");
-    List.Append(&List, "CS GO", 8,"kwm");
-    List.Append(&List, "CF", 9,"kqm");
+    List.Append(&List, "Chors", 3,"m/s");
+    List.Append(&List, "Reverb", 4,"cc");
+    List.Append(&List, "Pitch", 5,"tt");
+    List.Append(&List, "Change", 6,"gg");
+    List.Append(&List, "KKGO", 7,"ff");
+    List.Append(&List, "CS GO", 8,"ie");
+    List.Append(&List, "CF", 9,"gogo");
     
     time_init();
 

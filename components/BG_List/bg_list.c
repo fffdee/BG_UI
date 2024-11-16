@@ -163,9 +163,9 @@ void ShowList(BG_List *list)
                 List_select(list->Data.current_id, list->Data.min_show_count);
                 BGUI_tool.ShowString(5, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->name, 0x00);
                 BGUI_tool.ShowString(x,(current->id - list->Data.min_show_count) * 16,(uint8_t *)current->unit,0x00);
-                BGUI_tool.ShowNum(60,(current->id - list->Data.min_show_count) * 16,3333,0x00);
+                //BGUI_tool.ShowNum(60,(current->id - list->Data.min_show_count) * 16,3333,0x00);
                 //printf("%d\n",x-get_num_bit(current->data)*8-4);
-                printf("%d\n",get_num_bit(current->data)*8-4);
+                //printf("%d\n",get_num_bit(current->data)*8-4);
             }
             else
             {

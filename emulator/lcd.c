@@ -115,5 +115,6 @@ void LCD_DrawPoint(uint16_t x, uint16_t y, uint32_t color){
 void LCD_Update(){
 
      // 更新屏幕
+
     SDL_RenderPresent(renderer);
 }

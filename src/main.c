@@ -24,56 +24,41 @@ void timer_handler(int signum)
 {
 
     BG_SIM_Lcd.Loop(&running);
-
+    //BG_SIM_Lcd.Clear(0x000000);
     
-
-    //  BG_SIM_Lcd.DrawPoint(64,80,0xFFFFFF);
-    // BGUI_tool.ShowString(1,1,"hello world!",0xFF00FF);
-
-    // BGUI_tool.ShowImage(16,16,40,40,gImage_qq);//= malloc(sizeof(BG_List));
-
+  
     if (key == 0)
     {
-        BG_SIM_Lcd.Clear(0x000000);
-        // BGUI_tool.Circle(64,80,20,0xFFFFFF);
+        
         List.Up(&List);
         printf("id is %d \n",List.Data.current_id);
-       // List.Data.current_id+=1;
+
         key=10;
-        List.Show(&List);
-        BG_SIM_Lcd.Update();
+
     }
 
     if (key == 1)
     {
-
-        // BGUI_tool.DrawLine(10,10,60,60,0xFF);
-        BG_SIM_Lcd.Clear(0x000000);
+        
         List.Down(&List);
         printf("id is %d \n",List.Data.current_id);
-       // List.Data.current_id-=1;
+ 
         key=10;
-        List.Show(&List);
-        BG_SIM_Lcd.Update();
+
     }
 
     if (key == 2)
     {
-
-        // BGUI_tool.DrawLine(10,10,60,60,0xFF);
-        BG_SIM_Lcd.Clear(0x000000);
+       
         List.Enter(&List);
         printf("id is %d \n",List.Data.current_id);
-       // List.Data.current_id-=1;
+  
         key=10;
-        List.Show(&List);
-        BG_SIM_Lcd.Update();
+
     }
 
-    
-    //BGUI_tool.ShowNum(0,0,443334,0xffffff);
-    // BGUI_tool.ShowChar(0,0,'c',0xFFFFFF);
-
+    List.Show(&List);
+    //BG_SIM_Lcd.Update();
    
     if (running == 0)
     {
@@ -100,7 +85,7 @@ int main(int argc, char *argv[])
 
     BG_input_handle.KeyBoardInit();
     BG_SIM_Lcd.Init("BanGUI_LCD", 0);
-    List = BG_List_Init("GUITAR");
+    List = BG_List_Init("GUITAR",BG_SIM_Lcd.Update,BG_SIM_Lcd.Clear);
     List.Append(&List, "Dist", 1,"val");
     List.Append(&List, "Delay", 2,"km");
     List.Append(&List, "Chors", 3,"m/s");

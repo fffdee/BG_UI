@@ -167,15 +167,16 @@ void Gui_ShowNum(uint16_t x0, uint16_t y0, uint32_t num, uint32_t fc)
 			bit_count++;
 		}
 	}
-
-	char char_num[bit_count]; // 使用char类型数组
+//	printf("bit is %d",bit_count);
+	char char_num[bit_count+1]; // 使用char类型数组
 	for (uint8_t i = 0; i < bit_count; i++)
 	{
 		char_num[bit_count - i - 1] = (num % 10) + '0'; // 转换为字符并存储
 		num /= 10;										// 更新num为下一位数字
 		//printf("char num is %c\n", char_num[bit_count - i - 1]);
 	}
-	Gui_ShowString(x0, y0, char_num, 0xffffff);
+	char_num[bit_count] = '\0';
+	Gui_ShowString(x0, y0, char_num, fc);
 }
 
 void Gui_ShowImage(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, const uint8_t *chr)

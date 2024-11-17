@@ -20,6 +20,8 @@ char keyinput;
 uint8_t running = 1;
 uint8_t key = 2;
 BG_List List;
+
+uint8_t data[9] = { 33 ,44 ,55 ,66, 77, 88, 99 ,100 ,111};
 void timer_handler(int signum)
 {
 
@@ -86,15 +88,15 @@ int main(int argc, char *argv[])
     BG_input_handle.KeyBoardInit();
     BG_SIM_Lcd.Init("BanGUI_LCD", 0);
     List = BG_List_Init("GUITAR",BG_SIM_Lcd.Update,BG_SIM_Lcd.Clear);
-    List.Append(&List, "Dist", 1,"val");
-    List.Append(&List, "Delay", 2,"km");
-    List.Append(&List, "Chors", 3,"m/s");
-    List.Append(&List, "Reverb", 4,"cc");
-    List.Append(&List, "Pitch", 5,"tt");
-    List.Append(&List, "Change", 6,"gg");
-    List.Append(&List, "KKGO", 7,"ff");
-    List.Append(&List, "CS GO", 8,"ie");
-    List.Append(&List, "CF", 9,"gogo");
+    List.Append(&List, "Dist", data[0],"val");
+    List.Append(&List, "Delay", data[1],"km");
+    List.Append(&List, "Chors", data[2],"m/s");
+    List.Append(&List, "Reverb", data[3],"cc");
+    List.Append(&List, "Pitch", data[4],"tt");
+    List.Append(&List, "Change", data[5],"gg");
+    List.Append(&List, "KKGO", data[6],"ff");
+    List.Append(&List, "CS GO", data[7],"ie");
+    List.Append(&List, "CF", data[8],"gogo");
     
     time_init();
 

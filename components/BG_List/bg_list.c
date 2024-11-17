@@ -6,7 +6,7 @@
 #include "lcd.h"
 
 // 创建一个新的节点
-Node *createNode(int id, const char *name, uint16_t data, const char *unit)
+Node *createNode(int id, const char *name, int data, const char *unit)
 {
     Node *newNode = (Node *)malloc(sizeof(Node));
     if (newNode == NULL)
@@ -21,7 +21,7 @@ Node *createNode(int id, const char *name, uint16_t data, const char *unit)
     return newNode;
 }
 
-void appendNode(BG_List *list, const char *name, uint16_t data, const char *unit)
+void appendNode(BG_List *list, const char *name, int data, const char *unit)
 {
     // 创建新节点
     Node *newNode = createNode(list->Data.max_id + 1, name, data, unit);
@@ -158,7 +158,7 @@ void ShowList(BG_List *list)
     {
         list->Data.flash_flag = FLASH_DISABLE;
     }
-  
+
     if (list->Data.isEnter == 1 || list->Data.change_run == 1)
     {
 
@@ -179,11 +179,11 @@ void ShowList(BG_List *list)
         BGUI_tool.DrawLine(0, 16, LCD_WIDTH, 16, 0xFFFFFF);
         BGUI_tool.DrawLine(LCD_WIDTH - 1, 0, LCD_WIDTH - 1, 16, 0xFFFFFF);
 
-        BGUI_tool.DrawLine(LCD_WIDTH / 2 - 5 * 4, LCD_HEIGHT-16, LCD_WIDTH / 2 + 4 * 4+2, LCD_HEIGHT-16, 0xFFFFFF);
+        BGUI_tool.DrawLine(LCD_WIDTH / 2 - 5 * 4, LCD_HEIGHT - 16, LCD_WIDTH / 2 + 4 * 4 + 2, LCD_HEIGHT - 16, 0xFFFFFF);
         BGUI_tool.DrawLine(LCD_WIDTH / 2 - 5 * 4, LCD_HEIGHT - 16, LCD_WIDTH / 2 - 5 * 4, LCD_HEIGHT, 0xFFFFFF);
         BGUI_tool.ShowString(LCD_WIDTH / 2 - 4 * 4, LCD_HEIGHT - 16, "EXIT", 0xFFFFFF);
-        BGUI_tool.DrawLine(LCD_WIDTH / 2 + 4 * 4+2, LCD_HEIGHT - 16, LCD_WIDTH / 2 + 4 * 4+2, LCD_HEIGHT, 0xFFFFFF);
-        BGUI_tool.DrawLine(LCD_WIDTH / 2 - 5 * 4, LCD_HEIGHT-1, LCD_WIDTH / 2 + 4 * 4+2, LCD_HEIGHT-1, 0xFFFFFF);
+        BGUI_tool.DrawLine(LCD_WIDTH / 2 + 4 * 4 + 2, LCD_HEIGHT - 16, LCD_WIDTH / 2 + 4 * 4 + 2, LCD_HEIGHT, 0xFFFFFF);
+        BGUI_tool.DrawLine(LCD_WIDTH / 2 - 5 * 4, LCD_HEIGHT - 1, LCD_WIDTH / 2 + 4 * 4 + 2, LCD_HEIGHT - 1, 0xFFFFFF);
         Node *current = list->head; // 使用临时指针来遍历链表
 
         while (current != NULL)
@@ -201,19 +201,21 @@ void ShowList(BG_List *list)
                         List_select(list->Data.current_id, list->Data.min_show_count);
                         BGUI_tool.ShowString(5, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->name, 0x00);
                         BGUI_tool.ShowString(x, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->unit, 0x00);
+                        BGUI_tool.ShowNum(x-get_num_bit(current->data)*9,(current->id - list->Data.min_show_count) * 16,current->data,0x00);
                     }
                     else if (list->Data.flash_flag == FLASH_OFF)
                     {
                         BGUI_tool.ShowString(5, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->name, 0xFFFFFF);
                         BGUI_tool.ShowString(x, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->unit, 0xFFFFFF);
+                        BGUI_tool.ShowNum(x-get_num_bit(current->data)*9,(current->id - list->Data.min_show_count) * 16,current->data,0xFFFFFF);
                     }
-                    // BGUI_tool.ShowNum(60,(current->id - list->Data.min_show_count) * 16,3333,0x00);
+                    
                     // printf("%d\n",x-get_num_bit(current->data)*8-4);
                     // printf("%d\n",get_num_bit(current->data)*8-4);
                 }
                 else if (list->Data.current_id != current->id)
                 {
-
+                    BGUI_tool.ShowNum(x-get_num_bit(current->data)*9,(current->id - list->Data.min_show_count) * 16,current->data,0xFFFFFF);
                     BGUI_tool.ShowString(5, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->name, 0xffffff);
                     BGUI_tool.ShowString(x, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->unit, 0xffffff);
 
@@ -223,15 +225,15 @@ void ShowList(BG_List *list)
             if (list->Data.current_id == list->Data.max_id + 1)
             {
 
-                for (uint16_t x = LCD_WIDTH / 2 - 5 * 4; x < LCD_WIDTH / 2 + 4 * 4+3; x++)
+                for (uint16_t x = LCD_WIDTH / 2 - 5 * 4; x < LCD_WIDTH / 2 + 4 * 4 + 3; x++)
                 {
-                    for (uint16_t y = LCD_HEIGHT - 16; y < LCD_HEIGHT ; y++)
+                    for (uint16_t y = LCD_HEIGHT - 16; y < LCD_HEIGHT; y++)
                     {
                         BG_SIM_Lcd.DrawPoint(x, y, 0xCC7FFF);
                     }
                 }
                 BGUI_tool.ShowString(LCD_WIDTH / 2 - 4 * 4, LCD_HEIGHT - 16, "EXIT", 0x00);
-    }
+            }
             // printf("Data.min_show_count = %d\n", list->Data.min_show_count);
             BGUI_tool.DrawLine(0, (current->id) * 16, 0, (current->id + 1) * 16, 0xFFFFFF);
             BGUI_tool.DrawLine(0, (current->id + 1 - list->Data.min_show_count) * 16, LCD_WIDTH - LCD_WIDTH / 40 - 1, (current->id + 1 - list->Data.min_show_count) * 16, 0xFFFFFF);
@@ -296,15 +298,26 @@ void freeList(Node *head)
 void Select_up(BG_List *list)
 {
 
-    if (list->Data.current_id == list->Data.max_id + 1)
+    if (list->Data.isEnter == 0)
     {
-        list->Data.current_id = 1;
+        if (list->Data.current_id == list->Data.max_id + 1)
+        {
+            list->Data.current_id = 1;
+        }
+        else
+        {
+            list->Data.current_id += 1;
+        }
+    }else{
+
+        Node *current = searchNode(list->head, list->Data.current_id );
+        if (current != NULL)
+        {
+            current->data += 1;
+        }
     }
-    else
+    if (list->Data.current_id != list->Data.max_id + 1)
     {
-        list->Data.current_id += 1;
-    }
-      if(list->Data.current_id!=list->Data.max_id+1){
         if (list->Data.current_id <= list->Data.max_show_count)
         {
             list->Data.min_show_count = 0;
@@ -313,7 +326,7 @@ void Select_up(BG_List *list)
         {
             list->Data.min_show_count = list->Data.current_id - list->Data.max_show_count;
         }
-      }
+    }
     list->Data.change_run = 1;
     list->Reflash();
 }
@@ -336,16 +349,26 @@ void Select_Enter(BG_List *list)
 
 void Select_down(BG_List *list)
 {
+    if (list->Data.isEnter == 0)
+    {
+        if (list->Data.current_id == 1)
+        {
+            list->Data.current_id = list->Data.max_id + 1;
+        }
+        else
+        {
+            list->Data.current_id -= 1;
+        }
+    }else{
+        Node *current = searchNode(list->head, list->Data.current_id );
+        if (current != NULL)
+        {
+            current->data -= 1;
+        }
 
-    if (list->Data.current_id == 1)
-    {
-        list->Data.current_id = list->Data.max_id + 1;
     }
-    else
+    if (list->Data.current_id != list->Data.max_id + 1)
     {
-        list->Data.current_id -= 1;
-    }
-    if(list->Data.current_id!=list->Data.max_id+1){
         if (list->Data.current_id <= list->Data.max_show_count)
         {
             list->Data.min_show_count = 0;

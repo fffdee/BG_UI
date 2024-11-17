@@ -37,7 +37,7 @@ typedef struct
 
 typedef struct BG_List{
 
-    void (*Append)(struct BG_List*,const char*, uint16_t,const char*);
+    void (*Append)(struct BG_List*,const char*, int,const char*);
     void (*Delete)(Node**, int);
     void (*Show)(struct BG_List*);
     void (*Up)(struct BG_List*);

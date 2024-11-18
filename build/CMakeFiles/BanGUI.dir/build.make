@@ -97,10 +97,38 @@ CMakeFiles/BanGUI.dir/components/base_func/gui_tool.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BanGUI.dir/components/base_func/gui_tool.c.s"
 	gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/bango/BanGUI/components/base_func/gui_tool.c -o CMakeFiles/BanGUI.dir/components/base_func/gui_tool.c.s
 
+CMakeFiles/BanGUI.dir/components/page/bg_page.c.o: CMakeFiles/BanGUI.dir/flags.make
+CMakeFiles/BanGUI.dir/components/page/bg_page.c.o: ../components/page/bg_page.c
+CMakeFiles/BanGUI.dir/components/page/bg_page.c.o: CMakeFiles/BanGUI.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bango/BanGUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/BanGUI.dir/components/page/bg_page.c.o"
+	gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/BanGUI.dir/components/page/bg_page.c.o -MF CMakeFiles/BanGUI.dir/components/page/bg_page.c.o.d -o CMakeFiles/BanGUI.dir/components/page/bg_page.c.o -c /home/bango/BanGUI/components/page/bg_page.c
+
+CMakeFiles/BanGUI.dir/components/page/bg_page.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BanGUI.dir/components/page/bg_page.c.i"
+	gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/bango/BanGUI/components/page/bg_page.c > CMakeFiles/BanGUI.dir/components/page/bg_page.c.i
+
+CMakeFiles/BanGUI.dir/components/page/bg_page.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BanGUI.dir/components/page/bg_page.c.s"
+	gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/bango/BanGUI/components/page/bg_page.c -o CMakeFiles/BanGUI.dir/components/page/bg_page.c.s
+
+CMakeFiles/BanGUI.dir/components/page/page_manager.c.o: CMakeFiles/BanGUI.dir/flags.make
+CMakeFiles/BanGUI.dir/components/page/page_manager.c.o: ../components/page/page_manager.c
+CMakeFiles/BanGUI.dir/components/page/page_manager.c.o: CMakeFiles/BanGUI.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bango/BanGUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/BanGUI.dir/components/page/page_manager.c.o"
+	gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/BanGUI.dir/components/page/page_manager.c.o -MF CMakeFiles/BanGUI.dir/components/page/page_manager.c.o.d -o CMakeFiles/BanGUI.dir/components/page/page_manager.c.o -c /home/bango/BanGUI/components/page/page_manager.c
+
+CMakeFiles/BanGUI.dir/components/page/page_manager.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BanGUI.dir/components/page/page_manager.c.i"
+	gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/bango/BanGUI/components/page/page_manager.c > CMakeFiles/BanGUI.dir/components/page/page_manager.c.i
+
+CMakeFiles/BanGUI.dir/components/page/page_manager.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BanGUI.dir/components/page/page_manager.c.s"
+	gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/bango/BanGUI/components/page/page_manager.c -o CMakeFiles/BanGUI.dir/components/page/page_manager.c.s
+
 CMakeFiles/BanGUI.dir/emulator/lcd.c.o: CMakeFiles/BanGUI.dir/flags.make
 CMakeFiles/BanGUI.dir/emulator/lcd.c.o: ../emulator/lcd.c
 CMakeFiles/BanGUI.dir/emulator/lcd.c.o: CMakeFiles/BanGUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bango/BanGUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/BanGUI.dir/emulator/lcd.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bango/BanGUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/BanGUI.dir/emulator/lcd.c.o"
 	gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/BanGUI.dir/emulator/lcd.c.o -MF CMakeFiles/BanGUI.dir/emulator/lcd.c.o.d -o CMakeFiles/BanGUI.dir/emulator/lcd.c.o -c /home/bango/BanGUI/emulator/lcd.c
 
 CMakeFiles/BanGUI.dir/emulator/lcd.c.i: cmake_force
@@ -114,7 +142,7 @@ CMakeFiles/BanGUI.dir/emulator/lcd.c.s: cmake_force
 CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o: CMakeFiles/BanGUI.dir/flags.make
 CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o: ../keyinput/input_handle.c
 CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o: CMakeFiles/BanGUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bango/BanGUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bango/BanGUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o"
 	gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o -MF CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o.d -o CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o -c /home/bango/BanGUI/keyinput/input_handle.c
 
 CMakeFiles/BanGUI.dir/keyinput/input_handle.c.i: cmake_force
@@ -128,7 +156,7 @@ CMakeFiles/BanGUI.dir/keyinput/input_handle.c.s: cmake_force
 CMakeFiles/BanGUI.dir/src/main.c.o: CMakeFiles/BanGUI.dir/flags.make
 CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c
 CMakeFiles/BanGUI.dir/src/main.c.o: CMakeFiles/BanGUI.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bango/BanGUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/BanGUI.dir/src/main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bango/BanGUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/BanGUI.dir/src/main.c.o"
 	gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/BanGUI.dir/src/main.c.o -MF CMakeFiles/BanGUI.dir/src/main.c.o.d -o CMakeFiles/BanGUI.dir/src/main.c.o -c /home/bango/BanGUI/src/main.c
 
 CMakeFiles/BanGUI.dir/src/main.c.i: cmake_force
@@ -143,6 +171,8 @@ CMakeFiles/BanGUI.dir/src/main.c.s: cmake_force
 BanGUI_OBJECTS = \
 "CMakeFiles/BanGUI.dir/components/BG_List/bg_list.c.o" \
 "CMakeFiles/BanGUI.dir/components/base_func/gui_tool.c.o" \
+"CMakeFiles/BanGUI.dir/components/page/bg_page.c.o" \
+"CMakeFiles/BanGUI.dir/components/page/page_manager.c.o" \
 "CMakeFiles/BanGUI.dir/emulator/lcd.c.o" \
 "CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o" \
 "CMakeFiles/BanGUI.dir/src/main.c.o"
@@ -152,12 +182,14 @@ BanGUI_EXTERNAL_OBJECTS =
 
 BanGUI: CMakeFiles/BanGUI.dir/components/BG_List/bg_list.c.o
 BanGUI: CMakeFiles/BanGUI.dir/components/base_func/gui_tool.c.o
+BanGUI: CMakeFiles/BanGUI.dir/components/page/bg_page.c.o
+BanGUI: CMakeFiles/BanGUI.dir/components/page/page_manager.c.o
 BanGUI: CMakeFiles/BanGUI.dir/emulator/lcd.c.o
 BanGUI: CMakeFiles/BanGUI.dir/keyinput/input_handle.c.o
 BanGUI: CMakeFiles/BanGUI.dir/src/main.c.o
 BanGUI: CMakeFiles/BanGUI.dir/build.make
 BanGUI: CMakeFiles/BanGUI.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/bango/BanGUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable BanGUI"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/bango/BanGUI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable BanGUI"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/BanGUI.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

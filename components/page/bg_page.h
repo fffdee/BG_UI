@@ -3,42 +3,48 @@
 
 #include <stdint.h>
 
-#define MAX_ID 32
-
-typedef enum{
-
-    MAIN_PAGE=0,
-    REFLESH_PAGE,
-    
-    
-
-
-}BG_PAGE_CMD;
-
-typedef struct 
+typedef struct
 {
-    uint8_t last_id;
-    uint8_t current_id;
-    uint8_t next_id;
-    uint8_t funcstion_cmd;
-    void (*PageCmdHandle[MAX_ID])(uint8_t*);
+        const char  * name;
 
+        unsigned char ID;
 
+        unsigned char up;
+
+        unsigned char down;
+
+        unsigned char enter;
+
+        unsigned char exit;
+
+        void (*current_operation)();	 
+
+} BG_Page_Table;
+
+typedef struct
+{
+    uint8_t running_id;
+    uint8_t max_id_count;
+    BG_Page_Table *table;
 
 }BG_Page_Data;
 
 
-typedef struct 
+
+typedef struct BG_Page
 {
-    void (*Page_Scheduler)();
-    void (*Page_Refresh)();
-    void (*InputController)(uint8_t);
-    void (*ReturnMainPage)(void);
+
+    BG_Page_Data Data;
+    void (*Loop)(struct BG_Page*);
+    void (*SetPage)(struct BG_Page*,uint8_t);
+    void (*Last)(struct BG_Page*);
+    void (*Next)(struct BG_Page*);
+    void (*Enter)(struct BG_Page*);
+    void (*Exit)(struct BG_Page*);
 
 }BG_Page;
 
-extern BG_Page BG_page;
-
+BG_Page BG_Page_Init(BG_Page_Table *table, uint8_t size);
 #endif
 
 

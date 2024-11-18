@@ -45,6 +45,7 @@ typedef struct BG_List{
     void (*Enter)(struct BG_List*);
     void (*Reflash)(void);
     void (*Clear)(uint32_t);
+    void (*Timer_update)(struct BG_List*);
     BG_List_Data Data; 
     Node* head;    
 

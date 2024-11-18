@@ -142,13 +142,9 @@ void flash_handle(BG_List *list)
         list->Data.flash_flag = 0;
     }
 }
-void ShowList(BG_List *list)
-{
-    if (list == NULL || list->head == NULL)
-    {
-        printf("list is NULL or list->head is NULL");
-        return;
-    }
+
+
+void BG_timer_update(BG_List *list){
 
     if (list->Data.isEnter == 1 && list->Data.current_id <= list->Data.max_id)
     {
@@ -158,6 +154,16 @@ void ShowList(BG_List *list)
     {
         list->Data.flash_flag = FLASH_DISABLE;
     }
+}
+
+void ShowList(BG_List *list)
+{
+    if (list == NULL || list->head == NULL)
+    {
+        printf("list is NULL or list->head is NULL");
+        return;
+    }
+
 
     if (list->Data.isEnter == 1 || list->Data.change_run == 1)
     {
@@ -195,7 +201,7 @@ void ShowList(BG_List *list)
                 uint16_t x = LCD_WIDTH - LCD_WIDTH / 40 - 1 - strlen(current->unit) * 8;
                 if (list->Data.current_id == current->id)
                 {
-                     printf("id is %d\n",list->Data.flash_flag);
+                     
                     if (list->Data.flash_flag == FLASH_ON || list->Data.flash_flag == FLASH_DISABLE)
                     {
 
@@ -277,7 +283,7 @@ void ShowList(BG_List *list)
                 BGUI_tool.DrawLine(LCD_WIDTH - count - 2, y_start, LCD_WIDTH - count - 2, y_over, 0xFFFFFF);
             }
             /***************************************************************************slider_BAR******************************************************************/
-            // BGUI_tool.DrawLine(LCD_WIDTH - 3, (current->id) * 16, LCD_WIDTH - 3, (current->id + 1) * 16, 0xFFFFFF);
+           
             current = current->next; // 移动到下一个节点
         }
         list->Reflash();
@@ -385,6 +391,7 @@ void Select_down(BG_List *list)
 
 BG_List BG_List_Init(const char *title, void (*update)(void), void (*clear)(uint32_t))
 {
+    
     BG_List BG_list = {
 
         .Append = appendNode,
@@ -395,6 +402,7 @@ BG_List BG_List_Init(const char *title, void (*update)(void), void (*clear)(uint
         .Enter = Select_Enter,
         .Reflash = update,
         .Clear = clear,
+        .Timer_update = BG_timer_update,
     };
 
     BG_list.Data.title = title;

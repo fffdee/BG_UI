@@ -12,23 +12,22 @@
 #include "lcd.h"
 #include "input_handle.h"
 #include "gui_tool.h"
-#include "picture.h"
 #include "bg_list.h"
+#include "page_manager.h"
 
 struct timeval start_time;
 char keyinput;
 uint8_t running = 1;
 uint8_t key = 2;
-BG_List List;
+BG_Page BG_page ;
 
-uint8_t data[9] = { 33 ,44 ,55 ,66, 77, 88, 99 ,100 ,111};
 void timer_handler(int signum)
 {
 
     BG_SIM_Lcd.Loop(&running);
     //BG_SIM_Lcd.Clear(0x000000);
     
-  
+    BG_page.Loop(&BG_page);
     if (key == 0)
     {
         
@@ -58,8 +57,7 @@ void timer_handler(int signum)
         key=10;
 
     }
-
-    List.Show(&List);
+   
     //BG_SIM_Lcd.Update();
    
     if (running == 0)
@@ -87,6 +85,7 @@ int main(int argc, char *argv[])
 
     BG_input_handle.KeyBoardInit();
     BG_SIM_Lcd.Init("BanGUI_LCD", 0);
+    BG_page  = BG_Page_Init(table,MAX_PAGE);
     List = BG_List_Init("GUITAR",BG_SIM_Lcd.Update,BG_SIM_Lcd.Clear);
     List.Append(&List, "Dist", data[0],"val");
     List.Append(&List, "Delay", data[1],"km");
@@ -97,7 +96,6 @@ int main(int argc, char *argv[])
     List.Append(&List, "KKGO", data[6],"ff");
     List.Append(&List, "CS GO", data[7],"ie");
     List.Append(&List, "CF", data[8],"gogo");
-    
     time_init();
 
     while (1)

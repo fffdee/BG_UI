@@ -11,6 +11,7 @@ file(GLOB_RECURSE SRC_FILES
     "./keyinput/*.c"
     "./components/base_func/*.c"
     "./components/BG_List/*.c"
+    "./components/page/*.c"
 )
 
 # 生成可执行文件
@@ -23,6 +24,7 @@ target_include_directories(BanGUI PUBLIC
     ./keyinput
     ./components/base_func
     ./components/BG_List
+    ./components/page
 )
 # 查找 SDL2 库
 find_package(SDL2 REQUIRED)

@@ -177,6 +177,54 @@ components/base_func/gui_tool.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/base_func/gui_tool.c.s
 .PHONY : components/base_func/gui_tool.c.s
 
+components/page/bg_page.o: components/page/bg_page.c.o
+.PHONY : components/page/bg_page.o
+
+# target to build an object file
+components/page/bg_page.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/page/bg_page.c.o
+.PHONY : components/page/bg_page.c.o
+
+components/page/bg_page.i: components/page/bg_page.c.i
+.PHONY : components/page/bg_page.i
+
+# target to preprocess a source file
+components/page/bg_page.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/page/bg_page.c.i
+.PHONY : components/page/bg_page.c.i
+
+components/page/bg_page.s: components/page/bg_page.c.s
+.PHONY : components/page/bg_page.s
+
+# target to generate assembly for a file
+components/page/bg_page.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/page/bg_page.c.s
+.PHONY : components/page/bg_page.c.s
+
+components/page/page_manager.o: components/page/page_manager.c.o
+.PHONY : components/page/page_manager.o
+
+# target to build an object file
+components/page/page_manager.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/page/page_manager.c.o
+.PHONY : components/page/page_manager.c.o
+
+components/page/page_manager.i: components/page/page_manager.c.i
+.PHONY : components/page/page_manager.i
+
+# target to preprocess a source file
+components/page/page_manager.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/page/page_manager.c.i
+.PHONY : components/page/page_manager.c.i
+
+components/page/page_manager.s: components/page/page_manager.c.s
+.PHONY : components/page/page_manager.s
+
+# target to generate assembly for a file
+components/page/page_manager.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BanGUI.dir/build.make CMakeFiles/BanGUI.dir/components/page/page_manager.c.s
+.PHONY : components/page/page_manager.c.s
+
 emulator/lcd.o: emulator/lcd.c.o
 .PHONY : emulator/lcd.o
 
@@ -264,6 +312,12 @@ help:
 	@echo "... components/base_func/gui_tool.o"
 	@echo "... components/base_func/gui_tool.i"
 	@echo "... components/base_func/gui_tool.s"
+	@echo "... components/page/bg_page.o"
+	@echo "... components/page/bg_page.i"
+	@echo "... components/page/bg_page.s"
+	@echo "... components/page/page_manager.o"
+	@echo "... components/page/page_manager.i"
+	@echo "... components/page/page_manager.s"
 	@echo "... emulator/lcd.o"
 	@echo "... emulator/lcd.i"
 	@echo "... emulator/lcd.s"

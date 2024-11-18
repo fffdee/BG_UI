@@ -150,7 +150,7 @@ void ShowList(BG_List *list)
         return;
     }
 
-    if (list->Data.isEnter == 1 && list->Data.current_id < list->Data.max_id)
+    if (list->Data.isEnter == 1 && list->Data.current_id <= list->Data.max_id)
     {
         flash_handle(list);
     }
@@ -190,11 +190,12 @@ void ShowList(BG_List *list)
         {
 
             if (current->id - list->Data.min_show_count > 0 && current->id - list->Data.min_show_count <= list->Data.max_show_count)
-            {
+            {   
+               
                 uint16_t x = LCD_WIDTH - LCD_WIDTH / 40 - 1 - strlen(current->unit) * 8;
                 if (list->Data.current_id == current->id)
                 {
-
+                     printf("id is %d\n",list->Data.flash_flag);
                     if (list->Data.flash_flag == FLASH_ON || list->Data.flash_flag == FLASH_DISABLE)
                     {
 
@@ -292,7 +293,7 @@ void freeList(Node *head)
     {
         temp = head;
         head = head->next;
-        free(temp);
+        free(temp); 
     }
 }
 void Select_up(BG_List *list)

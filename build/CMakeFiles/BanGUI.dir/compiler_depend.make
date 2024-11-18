@@ -4,7 +4,7 @@
 CMakeFiles/BanGUI.dir/components/BG_List/bg_list.c.o: ../components/BG_List/bg_list.c \
   /usr/include/stdc-predef.h \
   ../components/BG_List/bg_list.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
+  /usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h \
   /usr/include/stdint.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/features.h \
@@ -22,8 +22,8 @@ CMakeFiles/BanGUI.dir/components/BG_List/bg_list.c.o: ../components/BG_List/bg_l
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/stdio.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h \
+  /usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h \
+  /usr/lib/gcc/x86_64-linux-gnu/9/include/stdarg.h \
   /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
@@ -673,9 +673,9 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/tsxldtrkintrin.h:
+/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
 
-/usr/include/x86_64-linux-gnu/bits/signum-arch.h:
+/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/serializeintrin.h:
 
@@ -684,6 +684,8 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 /usr/lib/gcc/x86_64-linux-gnu/11/include/lwpintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/lzcntintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/mmintrin.h:
 
@@ -765,6 +767,8 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/SDL2/SDL.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
+
 ../components/base_func/gui_tool.c:
 
 /usr/include/x86_64-linux-gnu/bits/fp-fast.h:
@@ -781,13 +785,9 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/features.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/mwaitintrin.h:
-
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/stdarg.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h:
 
@@ -829,10 +829,6 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/x86gprintrin.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/cldemoteintrin.h:
-
-/usr/include/SDL2/SDL_platform.h:
-
 /usr/include/x86_64-linux-gnu/bits/signum-generic.h:
 
 ../emulator/lcd.h:
@@ -847,11 +843,13 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
-
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/SDL2/SDL_joystick.h:
+
+../components/BG_List/bg_list.h:
 
 /usr/include/wchar.h:
 
@@ -865,11 +863,11 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
+
 /usr/include/x86_64-linux-gnu/bits/signal_ext.h:
 
 /usr/include/SDL2/SDL_touch.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
@@ -903,6 +901,10 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/SDL2/SDL_assert.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/mwaitintrin.h:
+
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
+
 /usr/include/features-time64.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
@@ -931,13 +933,13 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/string.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h:
+
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/popcntintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_stat.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/tbmintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/waitpkgintrin.h:
 
@@ -955,15 +957,19 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
 
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+/usr/include/SDL2/SDL_platform.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/sgxintrin.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/cldemoteintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/tsxldtrkintrin.h:
+
+/usr/include/x86_64-linux-gnu/bits/signum-arch.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/immintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
-
-/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
 
 /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h:
 
@@ -982,6 +988,10 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 /usr/lib/gcc/x86_64-linux-gnu/11/include/uintrintrin.h:
 
 /usr/include/SDL2/SDL_hidapi.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/sgxintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/tbmintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/xmmintrin.h:
 
@@ -1006,6 +1016,12 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 /usr/lib/gcc/x86_64-linux-gnu/11/include/mm_malloc.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/f16cintrin.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigaction.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/hresetintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/emmintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/ss_flags.h:
 
@@ -1089,12 +1105,6 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/SDL2/SDL_keyboard.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/hresetintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/emmintrin.h:
-
-/usr/include/x86_64-linux-gnu/bits/sigaction.h:
-
 /usr/include/SDL2/SDL_keycode.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/fmaintrin.h:
@@ -1106,10 +1116,6 @@ CMakeFiles/BanGUI.dir/src/main.c.o: ../src/main.c \
 /usr/include/SDL2/SDL_scancode.h:
 
 /usr/include/SDL2/SDL_mouse.h:
-
-../components/BG_List/bg_list.h:
-
-/usr/include/SDL2/SDL_joystick.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 

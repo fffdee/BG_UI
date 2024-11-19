@@ -15,7 +15,7 @@ typedef enum{
 }BG_Page_ID;
 extern uint8_t data[9];
 extern BG_Page_Table table[MAX_PAGE];
-extern BG_List List;
+
 extern BG_Page BG_page;
 
 #endif 

@@ -5,26 +5,33 @@
 #include "gui_tool.h"
 #include "lcd.h"
 
-// 创建一个新的节点
-Node *createNode(int id, const char *name, int data, const char *unit)
+Node *createNode(int id,char *name, int data,char *unit)
 {
     Node *newNode = (Node *)malloc(sizeof(Node));
     if (newNode == NULL)
     {
+        printf("Memory allocation failed\n");
         exit(EXIT_FAILURE); // 如果内存分配失败，退出程序
     }
     newNode->id = id;
     newNode->data = data;
-    newNode->name = name;
-    newNode->unit = unit;
+    newNode->name = strdup(name); // 使用strdup复制字符串
+    newNode->unit = strdup(unit); // 使用strdup复制字符串
+    if (newNode->name == NULL || newNode->unit == NULL) {
+        // 如果字符串复制失败，释放已分配的内存并退出
+        free(newNode->name); // 如果name已经分配了，则释放它
+        free(newNode);
+        printf("String duplication failed\n");
+        exit(EXIT_FAILURE);
+    }
     newNode->next = NULL;
     return newNode;
 }
 
-void appendNode(BG_List *list, const char *name, int data, const char *unit)
+void appendNode(BG_List *list, char *name, int data, char *unit)
 {
-    // 创建新节点
-    Node *newNode = createNode(list->Data.max_id + 1, name, data, unit);
+    // // 创建新节点
+     Node *newNode = createNode(list->Data.max_id + 1, name, data, unit);
 
     // 如果链表为空，则新节点成为头节点
     if (list->head == NULL)
@@ -45,7 +52,8 @@ void appendNode(BG_List *list, const char *name, int data, const char *unit)
 
     // 更新链表的最大id
     list->Data.max_id = newNode->id;
-    list->Reflash();
+    // // 调用 Reflash 函数更新显示
+    //list->Reflash();
 }
 
 // 删除具有特定值的节点
@@ -127,8 +135,10 @@ uint8_t get_num_bit(uint32_t num)
 
 void flash_handle(BG_List *list)
 {
-
+    
+    if(list->Data.isEnter==1)
     list->Data.flash_run_time++;
+
     if (list->Data.flash_run_time > list->Data.flash_time)
     {
         list->Data.flash_run_time = 0;
@@ -156,6 +166,14 @@ void BG_timer_update(BG_List *list){
     }
 }
 
+
+
+uint8_t BG_List_Exit(BG_List *list){
+
+   
+    return list->Data.exit_flag;
+}
+
 void ShowList(BG_List *list)
 {
     if (list == NULL || list->head == NULL)
@@ -179,6 +197,7 @@ void ShowList(BG_List *list)
                 BG_SIM_Lcd.DrawPoint(x, y, 0xCC7FFF);
             }
         }
+         
         BGUI_tool.DrawLine(0, 0, LCD_WIDTH, 0, 0xFFFFFF);
         BGUI_tool.DrawLine(0, 0, 0, 16, 0xFFFFFF);
         BGUI_tool.ShowString(LCD_WIDTH / 2 - (strlen(list->Data.title)) * 4, 1, (uint8_t *)list->Data.title, 0x00);
@@ -190,11 +209,13 @@ void ShowList(BG_List *list)
         BGUI_tool.ShowString(LCD_WIDTH / 2 - 4 * 4, LCD_HEIGHT - 16, "EXIT", 0xFFFFFF);
         BGUI_tool.DrawLine(LCD_WIDTH / 2 + 4 * 4 + 2, LCD_HEIGHT - 16, LCD_WIDTH / 2 + 4 * 4 + 2, LCD_HEIGHT, 0xFFFFFF);
         BGUI_tool.DrawLine(LCD_WIDTH / 2 - 5 * 4, LCD_HEIGHT - 1, LCD_WIDTH / 2 + 4 * 4 + 2, LCD_HEIGHT - 1, 0xFFFFFF);
+        
         Node *current = list->head; // 使用临时指针来遍历链表
-
+        //  if( list->head ==NULL)
+     
         while (current != NULL)
         {
-
+           // printf("Data.min_show_count = %d\n", current->id);
             if (current->id - list->Data.min_show_count > 0 && current->id - list->Data.min_show_count <= list->Data.max_show_count)
             {   
                
@@ -209,6 +230,7 @@ void ShowList(BG_List *list)
                         BGUI_tool.ShowString(5, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->name, 0x00);
                         BGUI_tool.ShowString(x, (current->id - list->Data.min_show_count) * 16, (uint8_t *)current->unit, 0x00);
                         BGUI_tool.ShowNum(x-get_num_bit(current->data)*9,(current->id - list->Data.min_show_count) * 16,current->data,0x00);
+                         
                     }
                     else if (list->Data.flash_flag == FLASH_OFF)
                     {
@@ -241,7 +263,7 @@ void ShowList(BG_List *list)
                 }
                 BGUI_tool.ShowString(LCD_WIDTH / 2 - 4 * 4, LCD_HEIGHT - 16, "EXIT", 0x00);
             }
-            // printf("Data.min_show_count = %d\n", list->Data.min_show_count);
+             
             BGUI_tool.DrawLine(0, (current->id) * 16, 0, (current->id + 1) * 16, 0xFFFFFF);
             BGUI_tool.DrawLine(0, (current->id + 1 - list->Data.min_show_count) * 16, LCD_WIDTH - LCD_WIDTH / 40 - 1, (current->id + 1 - list->Data.min_show_count) * 16, 0xFFFFFF);
             BGUI_tool.DrawLine(LCD_WIDTH - LCD_WIDTH / 40 - 1, (current->id) * 16, LCD_WIDTH - LCD_WIDTH / 40 - 1, (current->id + 1) * 16, 0xFFFFFF);
@@ -341,6 +363,11 @@ void Select_up(BG_List *list)
 void Select_Enter(BG_List *list)
 {
     list->Data.last_id = list->Data.current_id;
+    if(list->Data.current_id==list->Data.max_id+1){
+        list->Data.exit_flag = 1;
+        list->Clear(0x00);
+    }
+     
     if (list->Data.isEnter == 1)
     {
         list->Data.isEnter = 0;
@@ -389,39 +416,58 @@ void Select_down(BG_List *list)
     list->Reflash();
 }
 
-BG_List BG_List_Init(const char *title, void (*update)(void), void (*clear)(uint32_t))
+BG_List* BG_List_Init(char *title, void (*update)(void), void (*clear)(uint32_t))
 {
-    
-    BG_List BG_list = {
+    BG_List* bg_list = (BG_List*)malloc(sizeof(BG_List));
+    if (bg_list == NULL) {
+        // 内存申请失败
+         printf("fail\n");
+        return NULL;
+    }
+     printf("Init\n");
+    // 初始化结构体成员
+    bg_list->Append = appendNode; // 假设Append函数指针会在之后被赋值
+    bg_list->Delete = deleteNode; // 假设Delete函数指针会在之后被赋值
+    bg_list->Show = ShowList;   // 假设Show函数指针会在之后被赋值
+    bg_list->Up = Select_up;     // 假设Up函数指针会在之后被赋值
+    bg_list->Down = Select_down;   // 假设Down函数指针会在之后被赋值
+    bg_list->Enter = Select_Enter;  // 假设Enter函数指针会在之后被赋值
+    bg_list->Exit = BG_List_Exit;
+    bg_list->Reflash = update; // 使用传入的update函数指针
+    bg_list->Clear = clear;     // 使用传入的clear函数指针
+    bg_list->Timer_update = BG_timer_update; // 假设Timer_update函数指针会在之后被赋值
+    bg_list->head = NULL; // 初始化链表头指针
 
-        .Append = appendNode,
-        .Delete = deleteNode,
-        .Show = ShowList,
-        .Up = Select_up,
-        .Down = Select_down,
-        .Enter = Select_Enter,
-        .Reflash = update,
-        .Clear = clear,
-        .Timer_update = BG_timer_update,
-    };
-
-    BG_list.Data.title = title;
-    BG_list.Data.current_id = 4;
-    BG_list.Data.isEnter = 1;
-    BG_list.Data.change_run = 1;
-    BG_list.Data.flash_flag = FLASH_DISABLE;
-    BG_list.Data.flash_time = FLASH_TIME;
-    BG_list.Data.max_show_count = LCD_HEIGHT / 16 - 2;
-    if (BG_list.Data.current_id <= BG_list.Data.max_show_count)
+    bg_list->Data.title = title;
+    bg_list->Data.current_id = 4;
+    bg_list->Data.isEnter = 0;
+    bg_list->Data.change_run = 1;
+    bg_list->Data.max_id = 0;
+    bg_list->Data.exit_flag = 0;
+    bg_list->Data.last_id = bg_list->Data.current_id;
+    bg_list->Data.flash_run_time=0;
+    bg_list->Data.flash_flag = FLASH_DISABLE;
+    bg_list->Data.flash_time = FLASH_TIME;
+    bg_list->Data.max_show_count = LCD_HEIGHT / 16 - 2;
+    if (bg_list->Data.current_id <= bg_list->Data.max_show_count)
     {
-        BG_list.Data.min_show_count = 0;
+        bg_list->Data.min_show_count = 0;
     }
     else
     {
-        BG_list.Data.min_show_count = BG_list.Data.current_id - BG_list.Data.max_show_count;
+        bg_list->Data.min_show_count = bg_list->Data.current_id - bg_list->Data.max_show_count;
     }
 
-    BG_list.head = NULL;
 
-    return BG_list;
+    return bg_list;
+}
+
+void BG_List_DeInit(BG_List* bg_list) {
+    if (bg_list != NULL) {
+        printf("DeInit\n"); // 如果BG_List结构体中包含需要释放的资源，在这里释放它们
+        // 例如，如果Data结构体或head指针指向的链表需要释放，应该在这里做
+        printf("DeInit\n"); printf("DeInit\n");
+        // 释放BG_List结构体本身的内存
+        free(bg_list);
+    }
 }

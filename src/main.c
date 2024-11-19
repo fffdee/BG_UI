@@ -28,37 +28,37 @@ void timer_handler(int signum)
     //BG_SIM_Lcd.Clear(0x000000);
     
     BG_page.Loop(&BG_page);
-    if (key == 0)
-    {
+    // if (key == 0)
+    // {
         
-        List.Up(&List);
-        printf("id is %d \n",List.Data.current_id);
+    //     List.Up(&List);
+    //     printf("id is %d \n",List.Data.current_id);
 
-        key=10;
+    //     key=10;
 
-    }
+    // }
 
-    if (key == 1)
-    {
+    // if (key == 1)
+    // {
         
-        List.Down(&List);
-        printf("id is %d \n",List.Data.current_id);
+    //     List.Down(&List);
+    //     printf("id is %d \n",List.Data.current_id);
  
-        key=10;
+    //     key=10;
 
-    }
+    // }
 
-    if (key == 2)
-    {
+    // if (key == 2)
+    // {
        
-        List.Enter(&List);
-        printf("id is %d \n",List.Data.current_id);
+    //     List.Enter(&List);
+    //     printf("id is %d \n",List.Data.current_id);
   
-        key=10;
+    //     key=10;
 
-    }
+    // }
    
-    //BG_SIM_Lcd.Update();
+
    
     if (running == 0)
     {
@@ -94,16 +94,17 @@ int main(int argc, char *argv[])
 
         keyinput = BG_input_handle.KeyBoardLoop();
         if (keyinput == 115){
-            key = 0;
-   
+          
+            BG_page.Last(&BG_page);
         }
             
         if (keyinput == 119){
-             key = 1;    
+             BG_page.Next(&BG_page);    
      
         }
         if (keyinput == 0){
-             key = 2;    
+             
+             BG_page.Enter(&BG_page);  
      
         }
            

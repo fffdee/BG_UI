@@ -9,9 +9,9 @@ typedef struct
 
         unsigned char ID;
 
-        unsigned char up;
+        unsigned char last;
 
-        unsigned char down;
+        unsigned char next;
 
         unsigned char enter;
 
@@ -27,7 +27,13 @@ typedef struct
 {
     uint8_t running_id;
     uint8_t max_id_count;
+    uint8_t last_pressed;
+    uint8_t next_pressed;
+    uint8_t enter_pressed;
+    uint8_t exit_pressed;
+    uint8_t exit_flag;
     BG_Page_Table *table;
+
 
 }BG_Page_Data;
 
@@ -43,6 +49,7 @@ typedef struct BG_Page
     void (*Next)(struct BG_Page*);
     void (*Enter)(struct BG_Page*);
     void (*Exit)(struct BG_Page*);
+    void (*State_clear)(struct BG_Page*);
 
 }BG_Page;
 

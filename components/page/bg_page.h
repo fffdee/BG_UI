@@ -17,6 +17,8 @@ typedef struct
 
         unsigned char exit;
 
+        unsigned char setup;
+
         void (*current_operation)();	 
 
 } BG_Page_Table;

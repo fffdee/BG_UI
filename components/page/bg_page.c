@@ -4,31 +4,37 @@ void BG_page_loop(BG_Page* page)
 {   
     
     page->Data.table[page->Data.running_id].current_operation();
+    page->Data.table[page->Data.running_id].setup=0;
 }
 
 void BG_page_enter(BG_Page* page)
 {
     page->Data.running_id = page->Data.table[page->Data.running_id].enter;
+    page->Data.table[page->Data.running_id].setup=1;
 }
 
 void BG_page_exit(BG_Page* page)
 {
     page->Data.running_id = page->Data.table[page->Data.running_id].exit;
+    page->Data.table[page->Data.running_id].setup=1;
 }
 
 void BG_page_last(BG_Page* page)
 {
     page->Data.running_id = page->Data.table[page->Data.running_id].up;
+    page->Data.table[page->Data.running_id].setup=1;
 }
 
 void BG_page_next(BG_Page* page)
 {
     page->Data.running_id = page->Data.table[page->Data.running_id].down;
+    page->Data.table[page->Data.running_id].setup=1;
 }
 
 void BG_set_page(BG_Page* page,uint8_t id)
 {
     page->Data.running_id = id;
+    page->Data.table[page->Data.running_id].setup=1;
 }
 
 

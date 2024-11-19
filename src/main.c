@@ -19,7 +19,7 @@ struct timeval start_time;
 char keyinput;
 uint8_t running = 1;
 uint8_t key = 2;
-BG_Page BG_page ;
+BG_Page BG_page;
 
 void timer_handler(int signum)
 {
@@ -86,16 +86,7 @@ int main(int argc, char *argv[])
     BG_input_handle.KeyBoardInit();
     BG_SIM_Lcd.Init("BanGUI_LCD", 0);
     BG_page  = BG_Page_Init(table,MAX_PAGE);
-    List = BG_List_Init("GUITAR",BG_SIM_Lcd.Update,BG_SIM_Lcd.Clear);
-    List.Append(&List, "Dist", data[0],"val");
-    List.Append(&List, "Delay", data[1],"km");
-    List.Append(&List, "Chors", data[2],"m/s");
-    List.Append(&List, "Reverb", data[3],"cc");
-    List.Append(&List, "Pitch", data[4],"tt");
-    List.Append(&List, "Change", data[5],"gg");
-    List.Append(&List, "KKGO", data[6],"ff");
-    List.Append(&List, "CS GO", data[7],"ie");
-    List.Append(&List, "CF", data[8],"gogo");
+
     time_init();
 
     while (1)

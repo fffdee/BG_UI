@@ -91,7 +91,8 @@ void Gui_Circle(uint16_t X, uint16_t Y, uint16_t R, uint32_t fc)
 void Gui_ShowChar(uint16_t x0, uint16_t y0, uint8_t chr, uint32_t fc)
 {
 
-	unsigned char c = 0, i = 0, y;
+	unsigned char c = 0, i = 0;
+	uint16_t y;
 	uint8_t ch;
 	c = chr - ' '; // 得到偏移后的值
 	if (x0 > LCD_WIDTH - 1)

@@ -262,6 +262,7 @@ void ShowList(BG_List *list)
                     }
                 }
                 BGUI_tool.ShowString(LCD_WIDTH / 2 - 4 * 4, LCD_HEIGHT - 16, "EXIT", 0x00);
+                printf("%d\n",LCD_HEIGHT - 16);
             }
              
             BGUI_tool.DrawLine(0, (current->id) * 16, 0, (current->id + 1) * 16, 0xFFFFFF);

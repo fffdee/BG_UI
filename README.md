@@ -20,3 +20,13 @@ make
 ```
 ./BanGUI
 ```
+
+# UI object
+
+## BG_List
+
+### introduation
+#### This UI object is designed for Encoder-bottun and small-size TFT-LCD.
+ ![bg_list](./doc/picture/bg_list.png)
+ 
+

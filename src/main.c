@@ -9,7 +9,6 @@
 #include <sys/time.h>
 #include <stdint.h>
 #include <signal.h>
-#include "lcd.h"
 #include "input_handle.h"
 #include "gui_tool.h"
 #include "bg_list.h"
@@ -84,7 +83,7 @@ int main(int argc, char *argv[])
 {
 
     BG_input_handle.KeyBoardInit();
-    BG_SIM_Lcd.Init("BanGUI_LCD", 0);
+    BGUI_tool.Init();
     BG_page  = BG_Page_Init(table,MAX_PAGE);
 
     time_init();

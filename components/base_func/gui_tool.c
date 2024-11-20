@@ -10,17 +10,43 @@ void Gui_ShowChar(uint16_t x0, uint16_t y0, uint8_t chr, uint32_t fc);
 void Gui_ShowNum(uint16_t x0, uint16_t y0, uint32_t num, uint32_t fc);
 void Gui_ShowString(uint16_t x0, uint16_t y0, uint8_t *chr, uint32_t fc);
 void Gui_ShowImage(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, const uint8_t *chr);
-
+void Gui_DrwaPoint(uint16_t X, uint16_t Y,uint32_t fc);
+void Gui_Init(void);
+void Gui_Update(void);
+void Gui_Clear(uint32_t fc);
 BGUI_Tool BGUI_tool = {
 	// BGUI_tool.ShowString(0,0,"hello world!",0xFFFF);
-
+	.Init = Gui_Init,
+	.Clear = Gui_Clear,
+	.Update = Gui_Update,
 	.DrawLine = Gui_DrawLine,
 	.Circle = Gui_Circle,
 	.ShowChar = Gui_ShowChar,
 	.ShowNum = Gui_ShowNum,
 	.ShowString = Gui_ShowString,
 	.ShowImage = Gui_ShowImage,
+	.DrawPoint = Gui_DrwaPoint,
 };
+
+void Gui_Init(void)
+{
+	BG_SIM_Lcd.Init("BanGUI",0);
+}
+
+void Gui_Clear(uint32_t fc)
+{
+	BG_SIM_Lcd.Clear(fc);
+}
+
+void Gui_Update(void)
+{
+	BG_SIM_Lcd.Update();
+}
+
+void Gui_DrwaPoint(uint16_t X, uint16_t Y,uint32_t fc)
+{
+	BG_SIM_Lcd.DrawPoint(X,Y,fc);
+}
 
 void Gui_Circle(uint16_t X, uint16_t Y, uint16_t R, uint32_t fc)
 { // Bresenham算法
@@ -62,31 +88,7 @@ void Gui_Circle(uint16_t X, uint16_t Y, uint16_t R, uint32_t fc)
 	}
 }
 
-//  //显示2个数字
-// //x,y :起点坐标
-// //len :数字的位数
-// //size:字体大小
-// //mode:模式	0,填充模式;1,叠加模式
-// //num:数值(0~4294967295);
-// void OLED_ShowNum(uint8_t x,uint8_t y,unsigned int num,uint8_t len,uint8_t size2)
-// {
-// 	uint8_t t,temp;
-// 	uint8_t enshow=0;
-// 	for(t=0;t<len;t++)
-// 	{
-// 		temp=(num/oled_pow(10,len-t-1))%10;
-// 		if(enshow==0&&t<(len-1))
-// 		{
-// 			if(temp==0)
-// 			{
-// 				OLED_ShowChar(x+(size2/2)*t,y,' ',size2);
-// 				continue;
-// 			}else enshow=1;
 
-// 		}
-// 	 	OLED_ShowChar(x+(size2/2)*t,y,temp+'0',size2);
-// 	}
-// }
 
 void Gui_ShowChar(uint16_t x0, uint16_t y0, uint8_t chr, uint32_t fc)
 {

@@ -195,9 +195,9 @@ CMakeFiles/BanGUI.dir/src/main.c.o: /home/bango/BanGUI/src/main.c \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
  /usr/include/x86_64-linux-gnu/sys/time.h \
- /home/bango/BanGUI/./emulator/lcd.h \
  /home/bango/BanGUI/./keyinput/input_handle.h \
  /home/bango/BanGUI/./components/base_func/gui_tool.h \
+ /home/bango/BanGUI/./emulator/lcd.h \
  /home/bango/BanGUI/./components/BG_List/bg_list.h \
  /home/bango/BanGUI/./components/page/page_manager.h \
  /home/bango/BanGUI/./components/page/bg_page.h

@@ -2,7 +2,7 @@
 #define __PAGE_MANAGER_H__
 
 #include "bg_page.h"
-
+#include "bg_list.h"
 #define MAX_PAGE 3
 #define SETUP    1
 #define UNSETUP  0
@@ -17,5 +17,9 @@ extern uint8_t data[9];
 extern BG_Page_Table table[MAX_PAGE];
 
 extern BG_Page BG_page;
-
+#ifdef DYNAMIC
+ extern BG_List* List;
+#else
+ extern BG_List List;
+#endif
 #endif 

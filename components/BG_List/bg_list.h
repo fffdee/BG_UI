@@ -3,6 +3,9 @@
 
 #include<stdint.h>
 
+//#define DYNAMIC
+
+
 #define FLASH_TIME          1000
 #define FLASH_ON             1
 #define FLASH_OFF            0
@@ -25,6 +28,7 @@ typedef struct
     uint8_t max_show_count;
     uint8_t isEnter;
     uint8_t last_id;
+    uint8_t init_flag;
     uint8_t flash_flag;
     uint8_t change_run;
     uint8_t exit_flag;
@@ -53,8 +57,11 @@ typedef struct BG_List{
 
 }BG_List;
 
+#ifdef DYNAMIC
 BG_List* BG_List_Init(char * title,void(*update)(void),void(*clear)(uint32_t));
-
+#else
+BG_List BG_List_Init(char * title,void(*update)(void),void(*clear)(uint32_t));
+#endif
 void  BG_List_DeInit(BG_List* bg_list);
 
 #endif

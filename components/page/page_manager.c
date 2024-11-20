@@ -51,16 +51,23 @@ void list_page()
 
       //printf("BG_page.Data.running_id is %d\n", BG_page.Data.running_id);
 }
+
+#ifdef DYNAMIC
  BG_List* List;
+#else
+ BG_List List;
+#endif
+
 void list_page_in()
 {
-   
+
     if (BG_page.Data.table[BG_page.Data.running_id].setup == 1)
     {
         printf("BG_page.Data.running_id is %d\n", BG_page.Data.running_id);
        
-        List = BG_List_Init("GUITAR", BG_SIM_Lcd.Update, BG_SIM_Lcd.Clear);
-      
+        List = BG_List_Init("GUITAR", BGUI_tool.Update, BGUI_tool.Clear);
+#ifdef DYNAMIC   
+if(List->Data.init_flag==1){   
         List->Append(List, "Dist", data[0], "val");
         List->Append(List, "Delay", data[1], "km");
         List->Append(List, "Chors", data[2], "m/s");
@@ -70,10 +77,34 @@ void list_page_in()
         List->Append(List, "KKGO", data[6], "ff");
         List->Append(List, "CS GO", data[7], "ie");
         List->Append(List, "CF", data[8], "gogo");
-       
-        // List->Show(List);
-        // List->Reflash();
+        List->Data.init_flag=0;
+}
+ #else
+    if(List.Data.init_flag==1){
+        List.Append(&List, "Dist", data[0], "val");
+        List.Append(&List, "Delay", data[1], "km");
+        List.Append(&List, "Chors", data[2], "m/s");
+        List.Append(&List, "Reverb", data[3], "cc");
+        List.Append(&List, "Pitch", data[4], "tt");
+        List.Append(&List, "Change", data[5], "gg");
+        List.Append(&List, "KKGO", data[6], "ff");
+        List.Append(&List, "CS GO", data[7], "ie");
+        List.Append(&List, "CF", data[8], "gogo");
+        List.Data.init_flag=0;
     }
+ #endif      
+   
+    }
+#ifdef DYNAMIC
+    if(List->Exit(List)==1){
+
+       List->Data.exit_flag=0;
+       BG_page.Exit(&BG_page);
+       BG_List_DeInit(List);
+
+      
+    }
+
     if(BG_page.Data.last_pressed==1){
         List->Up(List);
     }
@@ -84,16 +115,30 @@ void list_page_in()
        List->Enter(List);
     }
 
-    if(List->Exit(List)==1){
+   
+      
+     List->Timer_update(List);
+     List->Show(List);
+#else
+    if(BG_page.Data.last_pressed==1){
+        List.Up(&List);
+    }
+    if(BG_page.Data.next_pressed==1){
+        List.Down(&List);
+    }
+    if(BG_page.Data.enter_pressed==1){
+       List.Enter(&List);
+    }
+    if(List.Exit(&List)==1){
 
-       List->Data.exit_flag=0;
+       List.Data.exit_flag=0;
        BG_page.Exit(&BG_page);
-       BG_List_DeInit(List);
 
       
     }
    
       
-     List->Timer_update(List);
-     List->Show(List);
+     List.Timer_update(&List);
+     List.Show(&List);
+#endif
 }
